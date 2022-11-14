@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import React, { useState, useEffect } from "react";
 import { useSearchParam } from "react-use";
 import { v4 } from "uuid";

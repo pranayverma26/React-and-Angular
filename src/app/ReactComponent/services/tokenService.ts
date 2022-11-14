@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-
 import { enviornmentConstant } from '../constant';
 
 /**

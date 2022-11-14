@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSearchParam } from "react-use";
