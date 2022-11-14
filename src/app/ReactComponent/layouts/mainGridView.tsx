@@ -40,7 +40,7 @@ export const MainGridView = () => {
     const itsOnlyMeInTheRoom =
       peers.length === 1 && peers[0].id === localPeerId;
     const nooneIsPublishing = sidebarPeers.length === 0;
-    showSidePane = itsOnlyMeInTheRoom || nooneIsPublishing;
+    showSidePane = false;//itsOnlyMeInTheRoom || nooneIsPublishing;
   }
 
   return (
