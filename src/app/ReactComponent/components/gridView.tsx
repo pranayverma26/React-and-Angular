@@ -23,6 +23,7 @@ const webinarInfoLink = webinarProps?.LINK_HREF || "https://100ms.live/";
 export const GridCenterView = ({ peers, maxTileCount }: any) => {
   const mediaQueryLg = cssConfig.media.md;
   const limitMaxTiles = useMedia(mediaQueryLg);
+  console.log('Grid', { peers, maxTileCount })
   return (
     <Fragment>
       <Box

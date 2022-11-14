@@ -5,7 +5,6 @@ import { Logo, SpeakerTag } from "./HeaderComponents";
 import { StreamActions } from "./StreamActions";
 
 export const ConferencingHeader = ({ isPreview }: any) => {
-  debugger
   return (
     <Flex
       justify="between"

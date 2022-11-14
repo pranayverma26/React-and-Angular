@@ -31,15 +31,15 @@ export class FeatureFlags {
   }
 
   static freezeVideoList() {
-    return window.HMS.FREEZE_VIDEO_LIST;
+    return window?.HMS?.FREEZE_VIDEO_LIST;
   }
 
   static optimiseHLSLatency() {
-    return window.HMS.OPTIMISE_HLS_LATENCY;
+    return window?.HMS?.OPTIMISE_HLS_LATENCY;
   }
 
   static alwaysRequestPermissions() {
-    return window.HMS.ALWAYS_REQUEST_PERMISSIONS;
+    return window?.HMS?.ALWAYS_REQUEST_PERMISSIONS;
   }
 }
 

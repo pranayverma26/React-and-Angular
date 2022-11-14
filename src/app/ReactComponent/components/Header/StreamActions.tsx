@@ -247,7 +247,6 @@ const StartRecording = () => {
 };
 
 export const StreamActions = () => {
-  debugger
   const isConnected = useHMSStore(selectIsConnectedToRoom);
   const permissions = useHMSStore(selectPermissions);
   const isMobile = useMedia(cssConfig.media.md);

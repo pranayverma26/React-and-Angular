@@ -43,7 +43,6 @@ import { isInternalRole } from "../../common/utils";
 import { SIDE_PANE_OPTIONS } from "../../common/constants";
 
 export const ParticipantList = () => {
-  debugger
   const [filter, setFilter]: any = useState();
   const { participants, isConnected, peerCount, rolesWithParticipants } =
     useParticipants(filter);
@@ -109,7 +108,6 @@ export const ParticipantList = () => {
 };
 
 export const ParticipantCount = () => {
-  debugger
   const peerCount = useHMSStore(selectPeerCount);
   const toggleSidepane = useSidepaneToggle(SIDE_PANE_OPTIONS.PARTICIPANTS);
   const isParticipantsOpen = useIsSidepaneTypeOpen(

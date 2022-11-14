@@ -125,7 +125,6 @@ const Container = styled("div", {
 });
 
 const PreviewTile = ({ name, error }: any) => {
-  debugger;
   const localPeer = useHMSStore(selectLocalPeer);
   const borderAudioRef = useBorderAudioLevel(localPeer?.audioTrack);
   const isVideoOn = useHMSStore(selectIsLocalVideoEnabled);

@@ -101,7 +101,6 @@ export function EdtechComponent({
         actions={hmsActions}
         store={hmsStore}
         notifications={hmsNotifications}
-        stats={hmsStats}
       >
         <AppData
           appDetails={metadata}
