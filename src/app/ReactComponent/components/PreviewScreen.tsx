@@ -30,11 +30,11 @@ import { enviornmentConstant } from "../constant";
  */
 
 const env = enviornmentConstant.REACT_APP_ENV;
-const PreviewScreen = React.memo(({ getUserToken }: any) => {
-  const navigate = useNavigation();
+const PreviewScreen = React.memo(({ getUserToken, onJoinSuccess }: any) => {
+  //const navigate = useNavigation();
   const tokenEndpoint = useTokenEndpoint();
   const [, setIsHeadless]: any = useSetUiSettings(UI_SETTINGS.isHeadless);
-  const { roomId: urlRoomId, role: userRole } = useParams(); // from the url
+  let routeData =  { roomId: "635fdee94208780bf66732ae", role: "host" }; //= useParams(); // from the url
   const [token, setToken]: any = useState(null);
   const [error, setError]: any = useState({ title: "", body: "" });
   // way to skip preview for automated tests, beam recording and streaming
@@ -56,12 +56,12 @@ const PreviewScreen = React.memo(({ getUserToken }: any) => {
       setToken(authToken);
       return;
     }
-    if (!tokenEndpoint || !urlRoomId) {
+    if (!tokenEndpoint || !routeData.roomId) {
       return;
     }
-    const getTokenFn = !userRole
+    const getTokenFn = !routeData.role
       ? () => getUserToken(v4())
-      : () => getToken(tokenEndpoint, v4(), userRole, urlRoomId);
+      : () => getToken(tokenEndpoint, v4(), routeData.role, routeData.roomId);
     getTokenFn()
       .then((token: any) => {
         setToken(token);
@@ -69,15 +69,16 @@ const PreviewScreen = React.memo(({ getUserToken }: any) => {
       .catch((error: any) => {
         setError(convertPreviewError(error));
       });
-  }, [tokenEndpoint, urlRoomId, getUserToken, userRole, authToken]);
+  }, [tokenEndpoint, routeData.roomId, getUserToken, routeData.role, authToken]);
 
   const onJoin = () => {
     !directJoinHeadful && setIsHeadless(skipPreview);
-    let meetingURL = `/meeting/${urlRoomId}`;
-    if (userRole) {
-      meetingURL += `/${userRole}`;
+    let meetingURL = `/meeting/${routeData.roomId}`;
+    if (routeData.role) {
+      meetingURL += `/${routeData.role}`;
     }
-    navigate(meetingURL);
+    onJoinSuccess(routeData.role)
+   // navigate(meetingURL);
   };
 
   if (error.title) {

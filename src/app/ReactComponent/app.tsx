@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Suspense, useEffect, useCallback } from "react";
+import { Suspense, useEffect, useCallback, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -89,6 +89,16 @@ export function EdtechComponent({
     .split("-")
     .map((el) => parseInt(el));
 
+  let [isPreviewScreen, setIsPreviewScreen] = useState(true);
+  let [isMeetingScreen, setIsMeetingScreen] = useState(false);
+  let [userRole, setIsUserRole] = useState("");
+
+  const onJoinSuccess = (role: string) => {
+    setIsPreviewScreen(false);
+    setIsMeetingScreen(true);
+    setIsUserRole(role);
+  };
+
   const getUserTokenCallback = useCallback(getUserToken, []); //eslint-disable-line
   return (
     <HMSThemeProvider
@@ -119,10 +129,19 @@ export function EdtechComponent({
               : { h: "100%" }),
           }}
         >
-          <AppRoutes
-            getUserToken={getUserTokenCallback}
-            getDetails={getDetails}
-          />
+          {isPreviewScreen && (
+            <Suspense fallback={<FullPageProgress />}>
+              <PreviewScreen
+                getUserToken={getUserToken}
+                onJoinSuccess={(role: string) => onJoinSuccess(role)}
+              />
+            </Suspense>
+          )}
+          {isMeetingScreen && (
+            <Suspense fallback={<FullPageProgress />}>
+              <Conference />
+            </Suspense>
+          )}
         </Box>
       </HMSRoomProvider>
     </HMSThemeProvider>
@@ -178,7 +197,7 @@ const RouteList = ({ getUserToken, getDetails }: any) => {
           path=":roomId/:role"
           element={
             <Suspense fallback={<FullPageProgress />}>
-               <Conference />
+              <Conference />
             </Suspense>
           }
         />

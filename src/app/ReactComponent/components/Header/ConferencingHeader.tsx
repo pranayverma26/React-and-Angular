@@ -14,7 +14,7 @@ export const ConferencingHeader = ({ isPreview }: any) => {
       <Flex align="center" css={{ position: "absolute", left: "$10" }}>
         <Logo />
         <VerticalDivider css={{ ml: "$8" }} />
-        {!isPreview ? <SpeakerTag /> : null}
+        {isPreview ? <SpeakerTag /> : null}
       </Flex>
 
       <Flex

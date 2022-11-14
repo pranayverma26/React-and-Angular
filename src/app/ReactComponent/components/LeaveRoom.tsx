@@ -33,7 +33,7 @@ import { useNavigation } from "./hooks/useNavigation";
 import { isStreamingKit } from "../common/utils";
 
 export const LeaveRoom = () => {
-  const navigate = useNavigation();
+  //const navigate = useNavigation();
   const params: any = useParams();
   const [showEndRoomModal, setShowEndRoomModal] = useState(false);
   const [lockRoom, setLockRoom] = useState(false);
@@ -42,11 +42,12 @@ export const LeaveRoom = () => {
   const hmsActions = useHMSActions();
 
   const redirectToLeavePage = () => {
-    if (params.role) {
-      navigate("/leave/" + params.roomId + "/" + params.role);
-    } else {
-      navigate("/leave/" + params.roomId);
-    }
+    // if (params.role) {
+    //   navigate("/leave/" + params.roomId + "/" + params.role);
+    // } else {
+    //   navigate("/leave/" + params.roomId);
+    // }
+    window.location.reload();
   };
 
   const leaveRoom = () => {

@@ -18,31 +18,31 @@ import { useNavigation } from "./hooks/useNavigation";
 import { useIsHeadless } from "./AppData/useUISettings";
 
 const Conference = () => {
-  const navigate = useNavigation();
-  const { roomId, role } = useParams();
+  //const navigate = useNavigation();
+  let routeData = { roomId:"635fdee94208780bf66732ae", role:"host" } //= useParams();
   const isHeadless = useIsHeadless();
   const roomState = useHMSStore(selectRoomState);
   const prevState = usePrevious(roomState);
   const isConnectedToRoom = useHMSStore(selectIsConnectedToRoom);
   const hmsActions = useHMSActions();
 
-  useEffect(() => {
-    if (!roomId) {
-      navigate(`/`);
-      return;
-    }
-    if (
-      !prevState &&
-      !(
-        roomState === HMSRoomState.Connecting ||
-        roomState === HMSRoomState.Reconnecting ||
-        isConnectedToRoom
-      )
-    ) {
-      if (role) navigate(`/preview/${roomId || ""}/${role}`);
-      else navigate(`/preview/${roomId || ""}`);
-    }
-  }, [isConnectedToRoom, prevState, roomState, navigate, role, roomId]);
+  // useEffect(() => {
+  //   if (!roomId) {
+  //     navigate(`/`);
+  //     return;
+  //   }
+  //   if (
+  //     !prevState &&
+  //     !(
+  //       roomState === HMSRoomState.Connecting ||
+  //       roomState === HMSRoomState.Reconnecting ||
+  //       isConnectedToRoom
+  //     )
+  //   ) {
+  //     if (role) navigate(`/preview/${roomId || ""}/${role}`);
+  //     else navigate(`/preview/${roomId || ""}`);
+  //   }
+  // }, [isConnectedToRoom, prevState, roomState, navigate, role, roomId]);
 
   useEffect(() => {
     // beam doesn't need to store messages, saves on unnecessary store updates in large calls
