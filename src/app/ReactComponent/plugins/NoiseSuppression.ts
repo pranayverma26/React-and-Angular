@@ -68,7 +68,7 @@ export const NoiseSuppression = () => {
         pluginRef.current
       );
       if (pluginSupport.isSupported) {
-        await hmsActions.addPluginToAudioTrack(pluginRef.current);
+        await hmsActions?.addPluginToAudioTrack(pluginRef.current);
       } else {
         const err = pluginSupport.errMsg;
         await handleFailure(err);

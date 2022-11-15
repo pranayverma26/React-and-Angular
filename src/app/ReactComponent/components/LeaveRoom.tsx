@@ -34,7 +34,7 @@ import { isStreamingKit } from "../common/utils";
 
 export const LeaveRoom = () => {
   //const navigate = useNavigation();
-  const params: any = useParams();
+  //const params: any = useParams();
   const [showEndRoomModal, setShowEndRoomModal] = useState(false);
   const [lockRoom, setLockRoom] = useState(false);
   const isConnected = useHMSStore(selectIsConnectedToRoom);

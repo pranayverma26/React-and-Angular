@@ -93,8 +93,8 @@ export const ConferencingFooter = () => {
       <AppFooter.Center>
         <AudioVideoToggle />
         <ScreenshareToggle />
-        <PIPComponent />
-        <MoreSettings />
+        {/* <PIPComponent /> */}
+        {/* <MoreSettings /> */}
         <LeaveRoom />
         <Flex
           align="center"

@@ -26,7 +26,7 @@ import SettingsModal from "../Settings/SettingsModal";
 import TileConnection from "../Connection/TileConnection";
 import PreviewName from "./PreviewName";
 import IconButton from "../../IconButton";
-//import { VirtualBackground } from "../../plugins/VirtualBackground/VirtualBackground";
+import { VirtualBackground } from "../../plugins/VirtualBackground/VirtualBackground";
 import {
   useUserPreferences,
   UserPreferencesKeys,
@@ -186,7 +186,7 @@ const PreviewControls = () => {
     >
       <Flex css={{ gap: "$4" }}>
         <AudioVideoToggle />
-        {/* <VirtualBackground /> */}
+        <VirtualBackground />
       </Flex>
       <PreviewSettings />
     </Flex>

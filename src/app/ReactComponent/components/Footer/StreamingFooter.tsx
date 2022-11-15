@@ -38,7 +38,7 @@ export const StreamingFooter = () => {
       >
         <ScreenshareToggle css={{ "@sm": { display: "none" } }} />
         <Box css={{ "@md": { display: "none" } }}>
-          <PIPComponent />
+          {/* <PIPComponent /> */}
         </Box>
         <Box
           css={{
@@ -52,7 +52,7 @@ export const StreamingFooter = () => {
         >
           <StreamActions />
         </Box>
-        <MoreSettings />
+        {/* <MoreSettings /> */}
         <Box css={{ "@md": { display: "none" } }}>
           <LeaveRoom />
         </Box>

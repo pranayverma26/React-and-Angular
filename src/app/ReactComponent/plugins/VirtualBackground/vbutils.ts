@@ -1,3 +1,4 @@
+import { enviornmentConstant } from './../../constant';
 export function getRandomVirtualBackground() {
   let backgroundList = [
     'blur',
@@ -10,7 +11,7 @@ export function getRandomVirtualBackground() {
     'https://d2qi07yyjujoxr.cloudfront.net/webapp/vb/hms4.png',
   ];
 
-  if (process.env['REACT_APP_VIDEO_VB']) {
+  if (enviornmentConstant.REACT_APP_VIDEO_VB) {
     let gifList = ['https://www.100ms.live/images/vb-1.gif'];
     backgroundList.push(...gifList);
 
