@@ -19,7 +19,7 @@ import { useIsHeadless } from "./AppData/useUISettings";
 
 const Conference = () => {
   //const navigate = useNavigation();
-  let routeData = { roomId:"635fdee94208780bf66732ae", role:"host" } //= useParams();
+  //let routeData = { roomId:"635fdee94208780bf66732ae", role:"host" } //= useParams();
   const isHeadless = useIsHeadless();
   const roomState = useHMSStore(selectRoomState);
   const prevState = usePrevious(roomState);

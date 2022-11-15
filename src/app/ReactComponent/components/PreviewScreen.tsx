@@ -30,11 +30,12 @@ import { enviornmentConstant } from "../constant";
  */
 
 const env = enviornmentConstant.REACT_APP_ENV;
-const PreviewScreen = React.memo(({ getUserToken, onJoinSuccess }: any) => {
+const PreviewScreen = React.memo(({ getUserToken, onJoinSuccess, userRole, userRoom }: any) => {
+  debugger
   //const navigate = useNavigation();
   const tokenEndpoint = useTokenEndpoint();
   const [, setIsHeadless]: any = useSetUiSettings(UI_SETTINGS.isHeadless);
-  let routeData =  { roomId: "635fdee94208780bf66732ae", role: "host" }; //= useParams(); // from the url
+  let routeData =  { roomId: userRoom, role: userRole }; //= useParams(); // from the url
   const [token, setToken]: any = useState(null);
   const [error, setError]: any = useState({ title: "", body: "" });
   // way to skip preview for automated tests, beam recording and streaming

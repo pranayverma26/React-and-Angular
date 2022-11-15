@@ -6,7 +6,7 @@ export default function ReactComponent() {
   return (
     <div>
       <HMSRoomProvider>
-        <AppComponent></AppComponent>
+        <AppComponent role="host" room="635fdee94208780bf66732ae"></AppComponent>
       </HMSRoomProvider>
     </div>
   );

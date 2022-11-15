@@ -81,6 +81,7 @@ export function EdtechComponent({
     metadata = "",
     recordingUrl = "",
   },
+  userInfo: { role = "", room = "" },
   getUserToken = defaultGetUserToken,
   policyConfig = envPolicyConfig,
   getDetails = () => {},
@@ -88,6 +89,8 @@ export function EdtechComponent({
   const { 0: width, 1: height } = aspectRatio
     .split("-")
     .map((el) => parseInt(el));
+
+
 
   let [isPreviewScreen, setIsPreviewScreen] = useState(true);
   let [isMeetingScreen, setIsMeetingScreen] = useState(false);
@@ -134,6 +137,8 @@ export function EdtechComponent({
               <PreviewScreen
                 getUserToken={getUserToken}
                 onJoinSuccess={(role: string) => onJoinSuccess(role)}
+                userRole={role}
+                userRoom={room}
               />
             </Suspense>
           )}
@@ -253,7 +258,7 @@ function AppRoutes({ getUserToken, getDetails }: any) {
   );
 }
 
-export default function App() {
+export default function App({ role, room }: any) {
   return (
     <EdtechComponent
       themeConfig={{
@@ -264,6 +269,7 @@ export default function App() {
         font: enviornmentConstant.REACT_APP_FONT,
       }}
       getUserToken={defaultGetUserToken}
+      userInfo={{ role, room }}
     />
   );
 }
