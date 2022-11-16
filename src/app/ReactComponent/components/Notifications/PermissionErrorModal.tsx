@@ -37,7 +37,7 @@ export function PermissionErrorModal() {
   return deviceType ? (
     <Dialog.Root
       open
-      onOpenChange={value => {
+      onOpenChange={(value) => {
         if (!value) {
           setDeviceType("");
         }

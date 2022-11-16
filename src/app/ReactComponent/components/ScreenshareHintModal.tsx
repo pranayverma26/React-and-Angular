@@ -1,22 +1,24 @@
 import React from "react";
 import { useHMSActions } from "@100mslive/react-sdk";
-import { Dialog, Button } from "@100mslive/react-ui";
+import { Button, Dialog } from "@100mslive/react-ui";
 import { DialogContent, DialogRow } from "../primitives/DialogContent";
 
 export const ScreenShareHintModal = ({ onClose }: any) => {
   const hmsActions = useHMSActions();
   return (
-    <Dialog.Root defaultOpen onOpenChange={(value: any) => !value && onClose()}>
+    <Dialog.Root defaultOpen onOpenChange={(value) => !value && onClose()}>
       <DialogContent title="AudioOnly Screenshare">
-        <img
-          src="/share-audio.png"
-          alt="AudioOnly Screenshare instructions"
-        ></img>
+        <img src="/share-audio.png" alt="AudioOnly Screenshare instructions" />
         <DialogRow justify="end">
           <Button
             variant="primary"
             onClick={() => {
-              hmsActions.setScreenShareEnabled(true, true);
+              hmsActions
+                .setScreenShareEnabled(true, {
+                  audioOnly: true,
+                  displaySurface: "browser",
+                })
+                .catch(console.error);
               onClose();
             }}
             data-testid="audio_screenshare_continue"

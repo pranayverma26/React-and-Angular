@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HMSNotificationTypes,
   useHMSActions,
@@ -10,7 +10,7 @@ import { RequestDialog } from "../../primitives/DialogContent";
 export const TrackBulkUnmuteModal = () => {
   const hmsActions = useHMSActions();
   const [muteNotification, setMuteNotification] = useState(null);
-  const notification = useHMSNotifications(
+  const notification: any = useHMSNotifications(
     HMSNotificationTypes.CHANGE_MULTI_TRACK_STATE_REQUEST
   );
 
@@ -24,15 +24,15 @@ export const TrackBulkUnmuteModal = () => {
     return null;
   }
 
-  const { requestedBy: peer, tracks, enabled } = muteNotification;
+  const { requestedBy: peer, tracks, enabled }: any = muteNotification;
 
   return (
     <RequestDialog
       title="Track Unmute Request"
       body={`${peer?.name} has requested you to unmute your tracks.`}
-      onOpenChange={value => !value && setMuteNotification(null)}
+      onOpenChange={(value: any) => !value && setMuteNotification(null)}
       onAction={() => {
-        tracks.forEach(track => {
+        tracks.forEach((track: any) => {
           hmsActions.setEnabledTrack(track.id, enabled);
         });
         setMuteNotification(null);

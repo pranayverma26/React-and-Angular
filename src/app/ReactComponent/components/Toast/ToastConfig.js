@@ -51,7 +51,7 @@ export const ToastConfig = {
         icon: <PersonIcon />,
       };
     },
-    multiple: notifications => {
+    multiple: (notifications) => {
       return {
         title: `${notifications[0].data.name} and ${
           notifications.length - 1
@@ -93,13 +93,13 @@ export const ToastConfig = {
     },
   },
   METADATA_UPDATED: {
-    single: notification => {
+    single: (notification) => {
       return {
         title: `${notification.data?.name} raised hand`,
         icon: <HandIcon />,
       };
     },
-    multiple: notifications => {
+    multiple: (notifications) => {
       return {
         title: `${notifications[notifications.length - 1].data?.name} and ${
           notifications.length - 1
@@ -109,14 +109,14 @@ export const ToastConfig = {
     },
   },
   NEW_MESSAGE: {
-    single: notification => {
+    single: (notification) => {
       return {
         title: `New message from ${notification.data?.senderName}`,
         icon: <ChatIcon />,
         action: isChatOpen() ? null : <ChatAction />,
       };
     },
-    multiple: notifications => {
+    multiple: (notifications) => {
       return {
         title: `${notifications.length} new messages`,
         icon: <ChatIcon />,

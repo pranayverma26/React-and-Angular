@@ -3,7 +3,7 @@ import {
   HMSNotificationTypes,
   useHMSNotifications,
 } from "@100mslive/react-sdk";
-import { ToastBatcher } from "../Toast/ToastBatcher";
+//import { ToastBatcher } from "../Toast/ToastBatcher";
 import { useSubscribedNotifications } from "../AppData/useUISettings";
 import { SUBSCRIBED_NOTIFICATIONS } from "../../common/constants";
 
@@ -45,7 +45,7 @@ export const PeerNotifications = () => {
       default:
         return;
     }
-    ToastBatcher.showToast({ notification });
+    //ToastBatcher.showToast({ notification });
   }, [notification, isPeerJoinSubscribed, isPeerLeftSubscribed]);
 
   return null;

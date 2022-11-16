@@ -22,7 +22,7 @@ import { APP_DATA, UI_SETTINGS } from '../../common/constants';
  *    console.log(val); // {isAudioOnly: false}
  * @param {string | undefined} uiSettingKey
  */
-export const useUISettings = (uiSettingKey: any) => {
+export const useUISettings = (uiSettingKey?: any) => {
   const uiSettings = useHMSStore(
     selectAppDataByPath(APP_DATA.uiSettings, uiSettingKey)
   );
@@ -72,7 +72,11 @@ export const useLogo = () => {
   return useHMSStore(selectAppData(APP_DATA.logo));
 };
 
-export const useSubscribedNotifications = (notificationKey: any) => {
+export const useUrlToEmbed = () => {
+  return useHMSStore(selectAppData(APP_DATA.embedConfig))?.url;
+};
+
+export const useSubscribedNotifications = (notificationKey?: any) => {
   const notificationPreference = useHMSStore(
     selectAppDataByPath(APP_DATA.subscribedNotifications, notificationKey)
   );

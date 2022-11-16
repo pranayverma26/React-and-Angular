@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HMSNotificationTypes,
   useHMSActions,
@@ -9,7 +9,7 @@ import { MicOnIcon } from "@100mslive/react-icons";
 
 export const TrackUnmuteModal = () => {
   const hmsActions = useHMSActions();
-  const notification = useHMSNotifications(
+  const notification: any = useHMSNotifications(
     HMSNotificationTypes.CHANGE_TRACK_STATE_REQUEST
   );
   const [muteNotification, setMuteNotification] = useState(null);
@@ -24,12 +24,12 @@ export const TrackUnmuteModal = () => {
     return null;
   }
 
-  const { requestedBy: peer, track, enabled } = muteNotification;
+  const { requestedBy: peer, track, enabled }: any = muteNotification;
 
   return (
     <RequestDialog
       title="Track Unmute Request"
-      onOpenChange={value => !value && setMuteNotification(null)}
+      onOpenChange={(value: any) => !value && setMuteNotification(null)}
       body={`${peer?.name} has requested you to unmute your ${track?.source} ${track?.type}.`}
       onAction={() => {
         hmsActions.setEnabledTrack(track.id, enabled);

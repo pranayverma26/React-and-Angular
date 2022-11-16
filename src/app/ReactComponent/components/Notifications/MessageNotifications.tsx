@@ -3,7 +3,7 @@ import {
   HMSNotificationTypes,
   useHMSNotifications,
 } from "@100mslive/react-sdk";
-import { ToastBatcher } from "../Toast/ToastBatcher";
+//import { ToastBatcher } from "../Toast/ToastBatcher";
 import {
   useIsHeadless,
   useSubscribedNotifications,
@@ -24,7 +24,7 @@ export const MessageNotifications = () => {
     if (!isNewMessageSubscribed || notification.data?.ignored || isHeadless) {
       return;
     }
-    ToastBatcher.showToast({ notification });
+    //ToastBatcher.showToast({ notification });
   }, [notification, isNewMessageSubscribed, isHeadless]);
 
   return null;

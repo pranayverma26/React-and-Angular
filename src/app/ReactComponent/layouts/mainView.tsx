@@ -1,28 +1,30 @@
-import React, { useEffect, Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import {
-  useHMSStore,
-  useHMSActions,
-  selectPeerSharingAudio,
-  selectPeerScreenSharing,
-  selectPeerSharingVideoPlaylist,
-  selectLocalPeerRoleName,
   selectIsConnectedToRoom,
+  selectLocalPeerRoleName,
+  selectPeerScreenSharing,
+  selectPeerSharingAudio,
+  selectPeerSharingVideoPlaylist,
+  useHMSActions,
+  useHMSStore,
 } from "@100mslive/react-sdk";
 import { Flex } from "@100mslive/react-ui";
-import { MainGridView } from "./mainGridView";
-import SidePane from "./SidePane";
 import FullPageProgress from "../components/FullPageProgress";
+import EmbedView from "./EmbedView";
+import { MainGridView } from "./mainGridView";
 import ScreenShareView from "./screenShareView";
+import SidePane from "./SidePane";
+import { useWhiteboardMetadata } from "../plugins/whiteboard";
+import { useAppConfig } from "../components/AppData/useAppConfig";
 import {
   useHLSViewerRole,
   useIsHeadless,
   useUISettings,
+  useUrlToEmbed,
 } from "../components/AppData/useUISettings";
-import { useBeamAutoLeave } from "../common/hooks";
-import { useWhiteboardMetadata } from "../plugins/whiteboard";
-import { useAppConfig } from "../components/AppData/useAppConfig";
-import { UI_MODE_ACTIVE_SPEAKER } from "../common/constants";
 import { useRefreshSessionMetadata } from "../components/hooks/useRefreshSessionMetadata";
+import { useBeamAutoLeave } from "../common/hooks";
+import { UI_MODE_ACTIVE_SPEAKER } from "../common/constants";
 import { enviornmentConstant } from "../constant";
 
 const WhiteboardView = React.lazy(() => import("./WhiteboardView"));
@@ -41,8 +43,9 @@ export const ConferenceMainView = () => {
   const hmsActions = useHMSActions();
   const isHeadless = useIsHeadless();
   const headlessUIMode: any = useAppConfig("headlessConfig", "uiMode");
-  const {uiViewMode, isAudioOnly } : any = useUISettings(undefined);
+  const { uiViewMode, isAudioOnly }: any = useUISettings();
   const hlsViewerRole = useHLSViewerRole();
+  const urlToIframe = useUrlToEmbed();
   useEffect(() => {
     if (!isConnected) {
       return;
@@ -69,6 +72,8 @@ export const ConferenceMainView = () => {
   let ViewComponent;
   if (localPeerRole === hlsViewerRole) {
     ViewComponent = HLSView;
+  } else if (urlToIframe) {
+    ViewComponent = EmbedView;
   } else if (whiteboardShared) {
     ViewComponent = WhiteboardView;
   } else if (

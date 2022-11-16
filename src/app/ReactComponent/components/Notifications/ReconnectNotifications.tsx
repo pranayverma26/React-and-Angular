@@ -5,28 +5,28 @@ import {
   useHMSNotifications,
 } from "@100mslive/react-sdk";
 import { ToastManager } from "../Toast/ToastManager";
-import { ToastConfig } from "../Toast/ToastConfig";
+//import { ToastConfig } from "../Toast/ToastConfig";
 
 const notificationTypes = [
   HMSNotificationTypes.RECONNECTED,
   HMSNotificationTypes.RECONNECTING,
 ];
-let notificationId = null;
+let notificationId: any = null;
 export const ReconnectNotifications = () => {
-  const notification = useHMSNotifications(notificationTypes);
+  const notification: any = useHMSNotifications(notificationTypes);
   useEffect(() => {
     if (notification?.type === HMSNotificationTypes.RECONNECTED) {
       LogRocket.track("Reconnected");
-      notificationId = ToastManager.replaceToast(
-        notificationId,
-        ToastConfig.RECONNECTED.single()
-      );
+      // notificationId = ToastManager.replaceToast(
+      //   notificationId,
+      //   ToastConfig.RECONNECTED.single()
+      // );
     } else if (notification?.type === HMSNotificationTypes.RECONNECTING) {
       LogRocket.track("Reconnecting");
-      notificationId = ToastManager.replaceToast(
-        notificationId,
-        ToastConfig.RECONNECTING.single()
-      );
+      // notificationId = ToastManager.replaceToast(
+      //   notificationId,
+      //   ToastConfig.RECONNECTING.single(notification.data.message)
+      // );
     }
   }, [notification]);
   return null;

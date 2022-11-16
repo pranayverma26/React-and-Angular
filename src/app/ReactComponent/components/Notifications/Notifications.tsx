@@ -14,7 +14,7 @@ import { ToastManager } from "../Toast/ToastManager";
 import { TrackNotifications } from "./TrackNotifications";
 import { PeerNotifications } from "./PeerNotifications";
 import { ReconnectNotifications } from "./ReconnectNotifications";
-import { ToastBatcher } from "../Toast/ToastBatcher";
+//import { ToastBatcher } from "../Toast/ToastBatcher";
 import { PermissionErrorModal } from "./PermissionErrorModal";
 import { MessageNotifications } from "./MessageNotifications";
 import {
@@ -22,14 +22,14 @@ import {
   useIsHeadless,
   useSubscribedNotifications,
 } from "../AppData/useUISettings";
-import { useNavigation } from "../hooks/useNavigation";
+//import { useNavigation } from "../hooks/useNavigation";
 import { getMetadata } from "../../common/utils";
 
 export function Notifications() {
   const notification = useHMSNotifications();
-  const navigate = useNavigation();
+  //const navigate = useNavigation();
   const HLS_VIEWER_ROLE = useHLSViewerRole();
-  const subscribedNotifications = useSubscribedNotifications() || {};
+  const subscribedNotifications: any = useSubscribedNotifications() || {};
   const isHeadless = useIsHeadless();
   useEffect(() => {
     if (!notification) {
@@ -45,7 +45,7 @@ export function Notifications() {
 
         console.debug("Metadata updated", notification.data);
         if (!subscribedNotifications.METADATA_UPDATED) return;
-        ToastBatcher.showToast({ notification });
+        //ToastBatcher.showToast({ notification });
         break;
       case HMSNotificationTypes.NAME_UPDATED:
         console.log(
@@ -96,7 +96,7 @@ export function Notifications() {
               "leave"
             );
             ToastManager.clearAllToast();
-            navigate(previewLocation);
+            //navigate(previewLocation);
           }, 2000);
           return;
         }
@@ -149,7 +149,7 @@ export function Notifications() {
             "meeting",
             "leave"
           );
-          navigate(leaveLocation);
+          //navigate(leaveLocation);
         }, 2000);
         break;
       case HMSNotificationTypes.DEVICE_CHANGE_UPDATE:

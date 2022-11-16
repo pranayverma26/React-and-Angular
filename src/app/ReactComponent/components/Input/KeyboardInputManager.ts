@@ -1,19 +1,19 @@
+import { useEffect } from 'react';
 import {
+  parsedUserAgent,
+  selectAppData,
   selectIsLocalAudioEnabled,
   selectIsLocalVideoEnabled,
-  parsedUserAgent,
-  useHMSVanillaStore,
   useHMSActions,
-  selectAppData,
-} from "@100mslive/react-sdk";
-import { useEffect } from "react";
-import { APP_DATA } from "../../common/constants";
+  useHMSVanillaStore,
+} from '@100mslive/react-sdk';
+import { APP_DATA } from '../../common/constants';
 
 let isEvenListenersAttached = false;
-let isMacOS = false; //parsedUserAgent.getOS().name.toLowerCase() === "mac os";
+let isMacOS = false; //parsedUserAgent.getOS().name.toLowerCase() === 'mac os';
 export class KeyboardInputManager {
-  #actions;
-  #store;
+  #actions: any;
+  #store: any;
   constructor(store: any, actions: any) {
     this.#actions = actions;
     this.#store = store;
@@ -30,18 +30,27 @@ export class KeyboardInputManager {
 
   #hideSidepane = () => {
     if (this.#store.getState(selectAppData(APP_DATA.sidePane))) {
-      this.#actions.setAppData(APP_DATA.sidePane, "");
+      this.#actions.setAppData(APP_DATA.sidePane, '');
     }
+  };
+
+  #toggleHlsStats = () => {
+    this.#actions.setAppData(
+      APP_DATA.hlsStats,
+      !this.#store.getState(selectAppData(APP_DATA.hlsStats))
+    );
   };
 
   #keyDownHandler = async (e: any) => {
     const CONTROL_KEY = isMacOS ? e.metaKey : e.ctrlKey;
-    const D_KEY = e.key === "d" || e.key === "D";
-    const E_KEY = e.key === "e" || e.key === "E";
+    const D_KEY = e.key === 'd' || e.key === 'D';
+    const E_KEY = e.key === 'e' || e.key === 'E';
+    const SNF_KEY = e.key === ']' || e.key === '}';
 
     const SHORTCUT_TOGGLE_AUDIO = CONTROL_KEY && D_KEY;
     const SHORTCUT_TOGGLE_VIDEO = CONTROL_KEY && E_KEY;
-    const SHORTCUT_SIDEPANE_CLOSE = e.key === "Escape";
+    const SHORTCUT_SIDEPANE_CLOSE = e.key === 'Escape';
+    const SHORTCUT_STATS_FOR_NERDS = CONTROL_KEY && SNF_KEY;
 
     if (SHORTCUT_TOGGLE_AUDIO) {
       e.preventDefault();
@@ -51,15 +60,17 @@ export class KeyboardInputManager {
       await this.#toggleVideo();
     } else if (SHORTCUT_SIDEPANE_CLOSE) {
       this.#hideSidepane();
+    } else if (SHORTCUT_STATS_FOR_NERDS) {
+      this.#toggleHlsStats();
     }
   };
 
   #bind = () => {
-    document.addEventListener("keydown", this.#keyDownHandler, false);
+    document.addEventListener('keydown', this.#keyDownHandler, false);
   };
 
   #unbind = () => {
-    document.removeEventListener("keydown", this.#keyDownHandler, false);
+    document.removeEventListener('keydown', this.#keyDownHandler, false);
   };
 
   bindAllShortcuts = () => {

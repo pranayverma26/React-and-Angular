@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { HMSRoomProvider } from "@100mslive/react-sdk";
 import { HMSThemeProvider, Box } from "@100mslive/react-ui";
-//import { Notifications } from "./components/Notifications";
+import { Notifications } from "./components/Notifications";
 import { Confetti } from "./plugins/confetti";
 import { RemoteStopScreenshare } from "./plugins/RemoteStopScreenshare";
 import { ToastContainer } from "./components/Toast/ToastContainer";
@@ -90,8 +90,6 @@ export function EdtechComponent({
     .split("-")
     .map((el) => parseInt(el));
 
-
-
   let [isPreviewScreen, setIsPreviewScreen] = useState(true);
   let [isMeetingScreen, setIsMeetingScreen] = useState(false);
   let [userRole, setIsUserRole] = useState("");
@@ -132,6 +130,11 @@ export function EdtechComponent({
               : { h: "100%" }),
           }}
         >
+          <ToastContainer />
+          <Notifications />
+          <Confetti />
+          <RemoteStopScreenshare />
+          <KeyboardHandler />
           {isPreviewScreen && (
             <Suspense fallback={<FullPageProgress />}>
               <PreviewScreen
@@ -236,7 +239,7 @@ function AppRoutes({ getUserToken, getDetails }: any) {
   return (
     <Router>
       <ToastContainer />
-      {/* <Notifications /> */}
+      <Notifications />
       <Confetti />
       <RemoteStopScreenshare />
       <KeyboardHandler />

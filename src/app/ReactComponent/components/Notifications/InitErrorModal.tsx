@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text } from "@100mslive/react-ui";
 import { ErrorDialog } from "../../primitives/DialogContent";
 
-export const InitErrorModal = ({ notification }) => {
+export const InitErrorModal = ({ notification }: any) => {
   const [showModal, setShowModal] = useState(false);
   const [info, setInfo] = useState({ title: "Init Error", description: "" });
 
