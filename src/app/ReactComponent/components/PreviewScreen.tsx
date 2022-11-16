@@ -30,100 +30,107 @@ import { enviornmentConstant } from "../constant";
  */
 
 const env = enviornmentConstant.REACT_APP_ENV;
-const PreviewScreen = React.memo(({ getUserToken, onJoinSuccess, userRole, userRoom }: any) => {
-  debugger
-  //const navigate = useNavigation();
-  const tokenEndpoint = useTokenEndpoint();
-  const [, setIsHeadless]: any = useSetUiSettings(UI_SETTINGS.isHeadless);
-  let routeData =  { roomId: userRoom, role: userRole }; //= useParams(); // from the url
-  const [token, setToken]: any = useState(null);
-  const [error, setError]: any = useState({ title: "", body: "" });
-  // way to skip preview for automated tests, beam recording and streaming
-  const beamInToken = useSearchParam("token") === "beam_recording"; // old format to remove
-  let skipPreview = useSearchParam(QUERY_PARAM_SKIP_PREVIEW) === "true";
-  // use this field to join directly for quick testing while in local
-  const directJoinHeadfulFromEnv =
-   enviornmentConstant.REACT_APP_HEADLESS_JOIN === "true";
-  const directJoinHeadful =
-    useSearchParam(QUERY_PARAM_SKIP_PREVIEW_HEADFUL) === "true" ||
-    directJoinHeadfulFromEnv;
-  skipPreview = skipPreview || beamInToken || directJoinHeadful;
-  const initialName =
-    useSearchParam(QUERY_PARAM_NAME) || (skipPreview ? "Beam" : "");
-  let authToken = useSearchParam(QUERY_PARAM_AUTH_TOKEN);
+const PreviewScreen = React.memo(
+  ({ getUserToken, onJoinSuccess, userRole, userRoom }: any) => {
+    //const navigate = useNavigation();
+    const tokenEndpoint = useTokenEndpoint();
+    const [, setIsHeadless]: any = useSetUiSettings(UI_SETTINGS.isHeadless);
+    let routeData = { roomId: userRoom, role: userRole }; //= useParams(); // from the url
+    const [token, setToken]: any = useState(null);
+    const [error, setError]: any = useState({ title: "", body: "" });
+    // way to skip preview for automated tests, beam recording and streaming
+    const beamInToken = useSearchParam("token") === "beam_recording"; // old format to remove
+    let skipPreview = useSearchParam(QUERY_PARAM_SKIP_PREVIEW) === "true";
+    // use this field to join directly for quick testing while in local
+    const directJoinHeadfulFromEnv =
+      enviornmentConstant.REACT_APP_HEADLESS_JOIN === "true";
+    const directJoinHeadful =
+      useSearchParam(QUERY_PARAM_SKIP_PREVIEW_HEADFUL) === "true" ||
+      directJoinHeadfulFromEnv;
+    skipPreview = skipPreview || beamInToken || directJoinHeadful;
+    const initialName =
+      useSearchParam(QUERY_PARAM_NAME) || (skipPreview ? "Beam" : "");
+    let authToken = useSearchParam(QUERY_PARAM_AUTH_TOKEN);
 
-  useEffect(() => {
-    if (authToken) {
-      setToken(authToken);
-      return;
-    }
-    if (!tokenEndpoint || !routeData.roomId) {
-      return;
-    }
-    const getTokenFn = !routeData.role
-      ? () => getUserToken(v4())
-      : () => getToken(tokenEndpoint, v4(), routeData.role, routeData.roomId);
-    getTokenFn()
-      .then((token: any) => {
-        setToken(token);
-      })
-      .catch((error: any) => {
-        setError(convertPreviewError(error));
-      });
-  }, [tokenEndpoint, routeData.roomId, getUserToken, routeData.role, authToken]);
+    useEffect(() => {
+      if (authToken) {
+        setToken(authToken);
+        return;
+      }
+      if (!tokenEndpoint || !routeData.roomId) {
+        return;
+      }
+      const getTokenFn = !routeData.role
+        ? () => getUserToken(v4())
+        : () => getToken(tokenEndpoint, v4(), routeData.role, routeData.roomId);
+      getTokenFn()
+        .then((token: any) => {
+          setToken(token);
+        })
+        .catch((error: any) => {
+          setError(convertPreviewError(error));
+        });
+    }, [
+      tokenEndpoint,
+      routeData.roomId,
+      getUserToken,
+      routeData.role,
+      authToken,
+    ]);
 
-  const onJoin = () => {
-    !directJoinHeadful && setIsHeadless(skipPreview);
-    let meetingURL = `/meeting/${routeData.roomId}`;
-    if (routeData.role) {
-      meetingURL += `/${routeData.role}`;
-    }
-    onJoinSuccess(routeData.role)
-   // navigate(meetingURL);
-  };
+    const onJoin = () => {
+      !directJoinHeadful && setIsHeadless(skipPreview);
+      let meetingURL = `/meeting/${routeData.roomId}`;
+      if (routeData.role) {
+        meetingURL += `/${routeData.role}`;
+      }
+      onJoinSuccess(routeData.role);
+      // navigate(meetingURL);
+    };
 
-  if (error.title) {
-    return <ErrorDialog title={error.title}>{error.body}</ErrorDialog>;
-  }
-  return (
-    <Flex direction="column" css={{ size: "100%" }}>
-      <Box
-        css={{ h: "$18", "@md": { h: "$17", flexShrink: 0 } }}
-        data-testid="header"
-      >
-        <Header  />
-      </Box>
-      <Flex
-        css={{ flex: "1 1 0", position: "relative", overflowY: "auto" }}
-        justify="center"
-        align="center"
-      >
-        {token ? (
-          <>
-            <PreviewContainer
-              initialName={initialName}
-              skipPreview={skipPreview}
-              env={env}
-              onJoin={onJoin}
-              token={token}
-            />
-          </>
-        ) : (
-          <Loading size={100} />
-        )}
-        <SidePane
-          css={{
-            position: "unset",
-            mr: "$10",
-            "@lg": { position: "fixed", mr: "$0" },
-          }}
-        />
+    if (error.title) {
+      return <ErrorDialog title={error.title}>{error.body}</ErrorDialog>;
+    }
+    return (
+      <Flex direction="column" css={{ size: "100%" }}>
+        <Box
+          css={{ h: "$18", "@md": { h: "$17", flexShrink: 0 } }}
+          data-testid="header"
+        >
+          <Header />
+        </Box>
+        <Flex
+          css={{ flex: "1 1 0", position: "relative", overflowY: "auto" }}
+          justify="center"
+          align="center"
+        >
+          {token ? (
+            <>
+              <PreviewContainer
+                initialName={initialName}
+                skipPreview={skipPreview}
+                env={env}
+                onJoin={onJoin}
+                token={token}
+              />
+            </>
+          ) : (
+            <Loading size={100} />
+          )}
+          <SidePane
+            css={{
+              position: "unset",
+              mr: "$10",
+              "@lg": { position: "fixed", mr: "$0" },
+            }}
+          />
+        </Flex>
       </Flex>
-    </Flex>
-  );
-});
+    );
+  }
+);
 
-const convertPreviewError = (error:any) => {
+const convertPreviewError = (error: any) => {
   console.error("[error]", { error });
   if (error.response && error.response.status === 404) {
     return {
@@ -154,7 +161,7 @@ const Link = styled("a", {
   color: "#2f80e1",
 });
 
-export const ErrorWithSupportLink = (errorMessage:any) => (
+export const ErrorWithSupportLink = (errorMessage: any) => (
   <div>
     {errorMessage} If you think this is a mistake on our side, please create{" "}
     <Link
