@@ -1,10 +1,10 @@
-import { ToastConfig } from "./ToastConfig";
-import { ToastManager } from "./ToastManager";
+import { ToastConfig } from './ToastConfig';
+import { ToastManager } from './ToastManager';
 
 export const ToastBatcher = {
   toastsType: new Map(),
-  showToastInternal({ notification, duration, type }) {
-    let notificationType = type;
+  showToastInternal({ notification, duration, type }: any) {
+    let notificationType: string = type;
     if (!type) {
       notificationType = notification.type;
     }
@@ -24,7 +24,7 @@ export const ToastBatcher = {
         duration: duration,
       });
     } else {
-      const toastObject = ToastConfig[notificationType].single(notification);
+      const toastObject = ToastConfig[notificationType];
       const toastId = ToastManager.addToast({
         ...toastObject,
         duration: duration,
@@ -38,16 +38,16 @@ export const ToastBatcher = {
       });
     }
   },
-  showToast({ notification, duration = 3000, type }) {
+  showToast({ notification, duration = 3000, type }: any) {
     try {
       this.showToastInternal({ notification, duration, type });
     } catch (err) {
-      console.debug("Notifications", err);
+      console.debug('Notifications', err);
     }
   },
-  syncUItoast(toastsDisplaying) {
+  syncUItoast(toastsDisplaying: any) {
     for (const [toastType, toastInfo] of this.toastsType.entries()) {
-      if (!toastsDisplaying.find(toast => toast.id === toastInfo.id)) {
+      if (!toastsDisplaying.find((toast: any) => toast.id === toastInfo.id)) {
         this.toastsType.delete(toastType);
       }
     }

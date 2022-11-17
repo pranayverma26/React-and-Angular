@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { selectAppData } from "@100mslive/react-sdk";
 import {
   HandIcon,
@@ -18,11 +18,10 @@ const isChatOpen = () => {
   );
 };
 
-const ChatAction = React.forwardRef((_, ref) => {
+const ChatAction = React.forwardRef((_: any, ref: any) => {
   return (
     <Button
       outlined
-      as="div"
       variant="standard"
       css={{ w: "max-content" }}
       onClick={() => {
@@ -35,9 +34,9 @@ const ChatAction = React.forwardRef((_, ref) => {
   );
 });
 
-export const ToastConfig = {
+export const ToastConfig: any = {
   PEER_LIST: {
-    single: function (notification) {
+    single: function (notification: any) {
       if (notification.data.length === 1) {
         return {
           title: `${notification.data[0]?.name} joined`,
@@ -51,7 +50,7 @@ export const ToastConfig = {
         icon: <PersonIcon />,
       };
     },
-    multiple: (notifications) => {
+    multiple: (notifications: any) => {
       return {
         title: `${notifications[0].data.name} and ${
           notifications.length - 1
@@ -61,13 +60,13 @@ export const ToastConfig = {
     },
   },
   PEER_JOINED: {
-    single: function (notification) {
+    single: function (notification: any) {
       return {
         title: `${notification.data?.name} joined`,
         icon: <PersonIcon />,
       };
     },
-    multiple: function (notifications) {
+    multiple: function (notifications: any) {
       return {
         title: `${notifications[notifications.length - 1].data.name} and ${
           notifications.length - 1
@@ -77,13 +76,13 @@ export const ToastConfig = {
     },
   },
   PEER_LEFT: {
-    single: function (notification) {
+    single: function (notification: any) {
       return {
         title: `${notification.data?.name} left`,
         icon: <PersonIcon />,
       };
     },
-    multiple: function (notifications) {
+    multiple: function (notifications: any) {
       return {
         title: `${notifications[notifications.length - 1].data.name} and ${
           notifications.length - 1
@@ -93,13 +92,13 @@ export const ToastConfig = {
     },
   },
   METADATA_UPDATED: {
-    single: (notification) => {
+    single: (notification: any) => {
       return {
         title: `${notification.data?.name} raised hand`,
         icon: <HandIcon />,
       };
     },
-    multiple: (notifications) => {
+    multiple: (notifications: any) => {
       return {
         title: `${notifications[notifications.length - 1].data?.name} and ${
           notifications.length - 1
@@ -109,14 +108,14 @@ export const ToastConfig = {
     },
   },
   NEW_MESSAGE: {
-    single: (notification) => {
+    single: (notification: any) => {
       return {
         title: `New message from ${notification.data?.senderName}`,
         icon: <ChatIcon />,
         action: isChatOpen() ? null : <ChatAction />,
       };
     },
-    multiple: (notifications) => {
+    multiple: (notifications: any) => {
       return {
         title: `${notifications.length} new messages`,
         icon: <ChatIcon />,

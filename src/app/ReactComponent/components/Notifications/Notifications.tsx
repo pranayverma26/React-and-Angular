@@ -14,7 +14,7 @@ import { ToastManager } from "../Toast/ToastManager";
 import { TrackNotifications } from "./TrackNotifications";
 import { PeerNotifications } from "./PeerNotifications";
 import { ReconnectNotifications } from "./ReconnectNotifications";
-//import { ToastBatcher } from "../Toast/ToastBatcher";
+import { ToastBatcher } from "../Toast/ToastBatchert";
 import { PermissionErrorModal } from "./PermissionErrorModal";
 import { MessageNotifications } from "./MessageNotifications";
 import {
@@ -45,7 +45,7 @@ export function Notifications() {
 
         console.debug("Metadata updated", notification.data);
         if (!subscribedNotifications.METADATA_UPDATED) return;
-        //ToastBatcher.showToast({ notification });
+        ToastBatcher.showToast({ notification });
         break;
       case HMSNotificationTypes.NAME_UPDATED:
         console.log(
