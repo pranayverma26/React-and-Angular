@@ -2,7 +2,7 @@ export const enviornmentConstant = {
   REACT_APP_TILE_SHAPE: "4-3",
   REACT_APP_THEME: "dark",
   REACT_APP_COLOR: "#7d7a17",
-  REACT_APP_LOGO: "http://wedallas.trainup.local/assets/images/logo4.jpg",
+  REACT_APP_LOGO: "https://www.trainup.com/UI/Images/Home/trainup-logo.svg",
   REACT_APP_FONT: "Roboto",
   REACT_APP_TOKEN_GENERATION_ENDPOINT:
     "https://prod-in2.100ms.live/hmsapi/dreamdomain.app.100ms.live/",
@@ -17,17 +17,16 @@ export const enviornmentConstant = {
   REACT_APP_ENABLE_WHITEBOARD: null,
   REACT_APP_PUSHER_APP_KEY: "",
   REACT_APP_PUSHER_AUTHENDPOINT: "",
-  REACT_APP_LOGROCKET_ID:null,
+  REACT_APP_LOGROCKET_ID: null,
   REACT_APP_HEADER_PRESENT: null,
   REACT_APP_DEFAULT_APP_DETAILS: null,
-  REACT_APP_TITLE:'Trainup',
-  NS_DURATION_TIME_IN_MS:0,
+  REACT_APP_TITLE: "Trainup",
+  NS_DURATION_TIME_IN_MS: 0,
   REACT_APP_TRANSCRIPTION_PUSHER_APP_KEY: "",
   REACT_APP_TRANSCRIPTION_PUSHER_AUTHENDPOINT: "",
   REACT_APP_DYNAMIC_STT_TOKEN_GENERATION_ENDPOINT: null,
   REACT_APP_AUDIO_PLAYLIST: null,
   REACT_APP_VIDEO_PLAYLIST: null,
   REACT_APP_WEBINAR_PROPS: null,
-  REACT_APP_VIDEO_VB:null
-
+  REACT_APP_VIDEO_VB: null,
 };

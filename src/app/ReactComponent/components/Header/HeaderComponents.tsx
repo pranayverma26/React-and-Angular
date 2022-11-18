@@ -58,16 +58,8 @@ export const Logo = () => {
     return null;
   }
   return (
-    <LogoImg
-      src={
-        logo ||
-        (themeType === "dark"
-          ? require("../../images/logo-light.svg")
-          : require("../../images/logo-dark.svg"))
-      }
-      alt="Brand Logo"
-      width={132}
-      height={40}
-    />
+    <a href="https://www.trainup.com/" target="_blank">
+      <LogoImg src={logo} alt="Brand Logo" width={132} height={40} />
+    </a>
   );
 };

@@ -13,10 +13,10 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('reactComponentPlaceHolder')
   reactComponentPlaceHolder!: ElementRef;
   title = 'my-angular-app';
-
+  props = { role: 'host', room: '635fdee94208780bf66732ae' };
   ngAfterViewInit() {
     ReactDOM.render(
-      React.createElement(ReactComponent),
+      React.createElement(ReactComponent, this.props),
       this.reactComponentPlaceHolder.nativeElement
     );
   }

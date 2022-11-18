@@ -1,10 +1,15 @@
-@import './base.css';
-@import './index.css';
+@import "./base.css";
+@import "./index.css";
 
-.hms-ui-c-dhzjXW-ihoBXQb-css{
+.hms-ui-c-dhzjXW-ihoBXQb-css {
   overflow-y: inherit !important;
 }
 
-.hms-ui-c-PJLV-ihWtKLf-css{
+.hms-ui-c-PJLV-ihWtKLf-css {
   height: 100vh !important;
+}
+
+.hms-ui-c-gcSVIQ {
+  max-height: 100px !important;
+  width: 100px !important;
 }
