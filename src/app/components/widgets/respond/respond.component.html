@@ -1,0 +1,16 @@
+<div class="users-wrapper-ng">
+  <div *ngFor="let item of ImagesList; let myIndex = index" [ngClass]="Key">
+    <div class="ng-user" [ngClass]="Key" *ngIf="myIndex < 3">
+      <img class="images" [src]="item.UserProfileImage" />
+    </div>
+  </div>
+  <div
+    class="ng-user"
+    [ngClass]="Key"
+    [ngStyle]="{ 'background-color': respondTheme.imgColor }"
+    *ngIf="ImagesList.length > 3"
+  >
+    +{{ ImagesList.length - 3 }}
+  </div>
+  <div class="response" [ngClass]="Action" [ngClass]="Learning">Responded</div>
+</div>

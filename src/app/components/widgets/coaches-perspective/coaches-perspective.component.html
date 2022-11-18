@@ -1,0 +1,162 @@
+<div class="coach-pers" style="position: relative">
+  <h2>Coaches' Perspective</h2>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="img-sec">
+        <img src="assets/images/coach.png" class="img-fluid" alt="" />
+        <div class="bg-blue" *ngFor="let item of Coaches">
+          <p>
+            {{ item.InsightQuestion || defaultInsightQuestion }}
+          </p>
+          <!-- <a href="#">Add Your Insights</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="card-wrapper">
+        <div class="inner d-flex align-items-end" *ngFor="let item of Coaches">
+          <div class="sub-inner">
+            <div class="text-sec">
+              <div
+                class="main"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdropOne"
+              >
+                <img
+                  src="assets/images/2.png"
+                  class="img-fluid"
+                  alt="image"
+                  (click)="openModal(feedback, item)"
+                />
+                <div
+                  class="thumbVideo-icon"
+                  (click)="openModal(feedback, item)"
+                >
+                  <img src="assets/images/v1.svg" />
+                </div>
+              </div>
+              <!-- <p>{{ item.content }}</p> -->
+              <div class="give-feedback">
+                <app-feedback
+                  [appData]="componentData"
+                  [widgetTypeName]="widgetTypeName"
+                  [itemId]="item.CommunityInsightId"
+                  [showComments]="true"
+                ></app-feedback>
+              </div>
+              <div class="right-img">
+                <img
+                  [src]="item.UserProfileImage"
+                  class="img-fluid"
+                  alt="Profile Img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="coach-btn">
+        <button type="button">Browse all Coaches' Perspective</button>
+      </div> -->
+    </div>
+  </div>
+  <div class="d-flex justify-content-center loaderContainer" *ngIf="showLoader">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<!--
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body" style="padding: 0;">
+        <div class="form-floating">
+          <video controls="controls" preload="auto" style="width: 100%; height: 100%;">
+            <source src="https://trainupresources.blob.core.windows.net/caticstaging/videos/703957bc-525c-4679-b7c2-2c6f9039fdcb.mp4">
+          </video>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+<ng-template #feedback>
+  <!-- <div
+
+  id="staticBackdropOne"
+  data-bs-backdrop="true"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+> -->
+  <!-- <div class="modal-dialog modal-dialog-centered"> -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel">
+        {{ coachPers.Description }}
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <video class="modal-video" controls="controls" preload="auto">
+        <source [src]="coachPers.ResourceUrl" />
+      </video>
+      <div class="modal-text">
+        <div class="inner">
+          <!-- <p>06 . 2 comments</p> -->
+          <div class="give-feedback">
+            <app-feedback
+              [appData]="componentData"
+              [widgetTypeName]="widgetTypeName"
+              [itemId]="coachPers.CommunityInsightId"
+              [showComments]="true"
+            ></app-feedback>
+          </div>
+          <span>Total: {{ coachPers.FeedbackCount }} Feedback</span>
+          <div *ngFor="let item of coachPers.Feedback">
+            <div class="comment-sec-main d-flex align-items-center">
+              <div class="comment-sec d-flex">
+                <div class="inner-main">
+                  <img src="assets/images/4.png" class="img-fluid" alt="" />
+                </div>
+                <div class="title-sec">
+                  <h6>{{ item.FirstName }} {{ item.LastName }}</h6>
+                </div>
+              </div>
+              <div class="comment-date-time justify-content-end">
+                <span>{{ item.CreatedOn }}</span>
+              </div>
+            </div>
+            <div class="comment-desc">
+              <p>
+                {{ item.Comment }}
+              </p>
+              <div class="give-feedback">
+                <app-feedback
+                  [appData]="componentData"
+                  [widgetTypeName]="widgetTypeName"
+                  [itemId]="item.ItemId"
+                  [showComments]="false"
+                ></app-feedback>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div> -->
+  </div>
+  <!-- </div>
+</div> -->
+</ng-template>

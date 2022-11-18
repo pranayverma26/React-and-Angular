@@ -1,0 +1,35 @@
+[
+  {
+    "id":1,
+    "content":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed…",
+    "VideoUrl":"assets/images/v1.svg",
+    "ImgUrl":"assets/images/3.png",
+    "Img2Url":"assets/images/4.png"
+  },
+  {
+    "id":2,
+    "content":"Lorem ipsum dolor sit amet, consetetur ",
+    "VideoUrl":"assets/images/v1.svg",
+    "ImgUrl":"assets/images/2.png",
+    "Img2Url":"assets/images/1.png",
+    "ModalUrl":"https://trainupresources.blob.core.windows.net/caticstaging/videos/703957bc-525c-4679-b7c2-2c6f9039fdcb.mp4"
+  },
+  {
+    "id":3,
+    "content":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed…",
+    "VideoUrl":"assets/images/v1.svg",
+    "ImgUrl":"assets/images/3.png",
+    "Img2Url":"assets/images/4.png",
+    "ModalUrl":"https://trainupresources.blob.core.windows.net/caticstaging/videos/703957bc-525c-4679-b7c2-2c6f9039fdcb.mp4"
+  },
+  {
+    "id":4,
+    "content":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed…",
+    "VideoUrl":"assets/images/v1.svg",
+    "ImgUrl":"assets/images/2.png",
+    "Img2Url":"assets/images/1.png",
+    "ModalUrl":"https://trainupresources.blob.core.windows.net/caticstaging/videos/703957bc-525c-4679-b7c2-2c6f9039fdcb.mp4"
+  }
+
+
+]

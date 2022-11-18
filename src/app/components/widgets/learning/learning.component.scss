@@ -1,0 +1,376 @@
+@import "../../../../variables.scss";
+
+.learning {
+  position: relative;
+  margin-top: 20px;
+  box-shadow: 2px 1px 5px #d9dfe8;
+  border-radius: 5px;
+  padding: 20px 20px 10px;
+  background: #fff;
+  &:before {
+    @include leftBorder;
+  }
+  h2 {
+    font-size: 22px;
+    color: #09122a;
+  }
+  p {
+    color: #3c4a4e;
+  }
+  .nav {
+    button {
+      color: #3c4a4e;
+    }
+    span {
+      color: #3c4a4e;
+    }
+  }
+  .tab-pane {
+    padding: 2px 2px;
+  }
+}
+
+.learning .nav button.active {
+  border: none;
+  background: $primary-button;
+  border-radius: 30px;
+  color: #fff;
+  margin-bottom: 13px;
+  padding: 5px 23px;
+  margin-top: 5px;
+}
+
+.learning .nav button.active span {
+  color: #fff;
+}
+
+.learning .nav button:hover {
+  border-color: transparent;
+}
+
+.news-card {
+  color: #182949;
+  box-shadow: 0px 0px 10px #c3c3c37d;
+  padding: 20px;
+  width: 33.33%;
+  margin: 15px;
+  border-radius: 10px;
+  img {
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  p {
+    color: #182949;
+    font-weight: 500;
+    margin: 0;
+  }
+  span {
+    width: 264px;
+    display: block;
+    line-height: 20px;
+    margin-top: 7px;
+  }
+  .more-btn {
+    margin-top: 20px;
+    a {
+      text-decoration: none;
+      border: 1px solid #013d58;
+      border-radius: 5px;
+      padding: 6px 23px;
+      color: #013d58;
+    }
+  }
+  .inner1 {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+.news-comment .inner,
+.news-card .inner1 {
+  width: 50%;
+}
+
+.news-comment {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #182949;
+}
+
+.learn-main {
+  .sort {
+    display: flex;
+    justify-content: end;
+    border-bottom: 1px solid #dee2e6;
+    width: 50%;
+    select {
+      width: 185px;
+      border: none;
+      margin-right: 15px;
+    }
+    img {
+      width: 18px;
+      margin-left: 15px;
+    }
+  }
+  .learn-inner {
+    width: 50%;
+  }
+}
+
+.dis-ques {
+  .ques-main {
+    box-shadow: 0 0 10px rgb(195 195 195 / 49%);
+    border-radius: 5px;
+    padding: 14px 20px;
+    width: auto;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+}
+
+.dis-ques:first-child .ques-main {
+  margin-top: 0;
+}
+
+.dis-ques {
+  display: flex;
+  &:first-child {
+    margin: 10px 15px;
+  }
+  .main {
+    display: flex;
+    align-items: center;
+  }
+  .ques-resp {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .main {
+    .inner {
+      background: #999;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .inner1 {
+      margin-left: 15px;
+      h6 {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0;
+        color: #182949;
+      }
+      span {
+        font-size: 13px;
+      }
+    }
+  }
+  .text-sec {
+    margin-top: 13px;
+    h4 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    p {
+      margin: 13px auto 0;
+      font-size: 13px;
+      display: flex;
+    }
+    i {
+      transform: rotate(90deg);
+      margin-right: 8px;
+      font-size: 20px;
+    }
+    a {
+      padding: 6px 20px;
+      font-size: 14px;
+      text-decoration: none;
+      color: $primary-button;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 20px;
+      border: 1px solid $primary-button;
+      transition: 0.3s;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .news-card,
+  .news-card span {
+    width: 100%;
+  }
+  .news-main,
+  .learn-main {
+    display: block !important;
+  }
+  .learning {
+    .tab-pane {
+      padding: 20px 0px;
+    }
+  }
+  .news-inner {
+    padding: 20px;
+    box-shadow: 0px 0px 10px #c3c3c37d;
+    border-radius: 10px;
+  }
+  .learn-main .learn-inner,
+  .learn-main .sort {
+    width: 100%;
+  }
+  .learn-main .sort {
+    border: none;
+    justify-content: start;
+    margin-top: 20px;
+  }
+  .dis-ques {
+    .ques-main {
+      margin-left: 0;
+    }
+    &:first-child {
+      margin: 10px 5px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .news-card,
+  .news-card span {
+    width: 100%;
+  }
+
+  .learning {
+    .tab-pane {
+      padding: 20px 0px;
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .learning {
+    .tab-pane {
+      padding: 0;
+    }
+  }
+  .news-card {
+    margin: 25px 8px;
+  }
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  width: 40vw;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+  padding-left: 25px;
+}
+
+.modal {
+  .modal-content {
+    .modal-header {
+      border-bottom: 0;
+      font-family: "Open Sans", sans-serif;
+      line-height: 26px;
+    }
+  }
+}
+
+.modal-header {
+  display: flex;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-top-left-radius: calc(0.3rem - 1px);
+  border-top-right-radius: calc(0.3rem - 1px);
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  padding-left: 20px;
+  color: #013042;
+}
+
+.modal-header {
+  .close {
+    padding: 2rem 2rem;
+    margin: -1rem -1rem -1rem auto;
+  }
+}
+
+button.close {
+  /* padding: 0; */
+  background-color: transparent;
+  border: 0;
+  appearance: none;
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+}
+
+button:before {
+  font-family: HeydingsControlsRegular;
+  font-size: 20px;
+  position: relative;
+  content: attr(data-icon);
+  color: #aaa;
+  text-shadow: 1px 1px 0px black;
+}
+
+.modal {
+  .modal-content {
+    .modal-body {
+      padding: 0 30px 20px 30px;
+    }
+    .modal-header {
+      .close {
+        font-size: 36px;
+        font-weight: 300;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.ng-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-left: 10px;
+}
+
+#imgPhoto {
+  border-radius: 50%;
+  height: 52px;
+}
+
+.ng-name-details {
+  .ng-name {
+    color: #3c4a4e;
+    font-size: 14px;
+  }
+  .ng-date-stamp {
+    display: block;
+    color: #3c4a4e;
+    font-size: 12px;
+  }
+}

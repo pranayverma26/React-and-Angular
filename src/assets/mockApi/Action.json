@@ -1,0 +1,44 @@
+[
+  {
+  "id":1,
+  "title":"Rate And Topics",
+  "duration":"1 Minute",
+  "para":"Please take a moment to tell us what you thought of the training experience topic wise.",
+  "imgUrl":"https://catapult.trainup.net/images/capital-one/icons/rate-topics.svg",
+  "Btntxt":"Rate Now",
+  "isReadOnly":true,
+
+  "rate":"04",
+  "topic":"Topic(s) Rated"
+
+
+},
+{
+  "id":2,
+  "title":"Answer A Poll",
+  "duration":"1 Minute",
+  "para":"Thanks For Responding!",
+  "imgUrl":"https://catapult.trainup.net/images/capital-one/icons/answer-poll.svg",
+  "Btntxt":null,
+  "isReadOnly":false,
+
+  "rate":null,
+  "topic":null
+
+
+},
+{
+  "id":3,
+  "title":"Discussion Questions",
+  "duration":"1 Minute",
+  "para":"Prior to attending the training course, please click here to participate in a related discussion question.",
+  "imgUrl":"https://catapult.trainup.net/images/capital-one/icons/complete-pre-activities.svg",
+  "Btntxt":"Respond",
+  "isReadOnly":false,
+
+  "rate":null,
+  "topic":null
+
+
+}
+]

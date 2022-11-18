@@ -1,0 +1,21 @@
+export interface CochesPerPective{
+  WidgetId: number,
+WidgetTypeId: number,
+Description: string,
+CreatedBy: number,
+UserId: number,
+FirstName: string,
+LastName: string,
+UserProfileImage: string,
+AcknowledgementCount: number,
+EncouragementCount: number,
+CreatedOn: string,
+Designation: string,
+FeedbackCount: number,
+ResourceUrl: string,
+CommunityInsightId: number,
+IsShowReadMore: boolean,
+Feedback: [],
+InsightQuestion: string,
+TrainingFloId:number
+}

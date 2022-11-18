@@ -1,0 +1,317 @@
+<div style="position: relative" target="_blank">
+  <div class="feedback-wrapper">
+    <!-- <div
+      class="feedback-details"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      *ngIf="showComments"
+      (click)="getFeedBackDetail()"
+    >
+      <a class="reactions two-thumbs-up"></a>
+      <a class="count" id="feedbackCount">{{
+        feedbackDetail?.FeedbackCount
+      }}</a>
+      <a data-toggle="modal" class="total-comments"
+        >{{ feedbackDetail?.CommentsCount }} comments</a
+      >
+    </div> -->
+    <div class="feedback-details" [ngClass]="isFeedbackProvided ?'feedback-Provided' : ''">
+      <a (click)="openModal(viewFeedback)" class="reactions two-thumbs-up"></a>
+      <a (click)="openModal(viewFeedback)" class="count" id="feedbackCount">{{
+        feedbackDetail?.FeedbackCount
+      }}</a>
+      <a
+        data-toggle="modal"
+        (click)="openModal(viewFeedback)"
+        class="total-comments"
+        >{{ feedbackDetail?.CommentsCount }} comments</a
+      >
+    </div>
+  </div>
+  <div
+    class="give-feedback"
+    (click)="showFeedBackWidget()"
+    *ngIf="!feedBackData && !isFeedbackProvided"
+
+  >
+    <p #toggleButton><i class="fa-solid fa-thumbs-up"></i> Give Feedback</p>
+  </div>
+
+  <div class="feed-widg" *ngIf="showWidget" >
+    <div class="d-flex pop-wrapper justify-content-center" *ngIf="showRating"  #menu>
+      <div class="popover-main">
+        <div class="inner d-flex">
+          <a
+            href="javascript:void()"
+            class="sub-inner agree-hundred"
+            (click)="rating(1)"
+          ></a>
+          <a
+            href="javascript:void()"
+            class="sub-inner thumbs-up"
+            (click)="rating(2)"
+          ></a>
+          <a
+            href="javascript:void()"
+            class="sub-inner makes-sense"
+            (click)="rating(4)"
+          ></a>
+        </div>
+        <div class="popover-label">Acknowledge</div>
+      </div>
+
+      <div class="popover-main">
+        <div class="inner d-flex">
+          <a
+            href="javascript:void()"
+            class="sub-inner considered"
+            (click)="rating(10)"
+          ></a>
+          <a
+            href="javascript:void()"
+            class="sub-inner fence"
+            (click)="rating(8)"
+          ></a>
+          <a
+            href="javascript:void()"
+            class="sub-inner see-it"
+            (click)="rating(9)"
+          ></a>
+        </div>
+        <div class="popover-label">Encourage</div>
+      </div>
+
+      <div class="cross-icon" (click)="showFeedBackWidget()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+    </div>
+    <div class="rating-comment" *ngIf="!showRating">
+      <a href="javascript:void()">
+        <i class="fa-solid fa-chevron-left" (click)="backRating()"></i>
+      </a>
+      <a href="javascript:void()" class="sub-inner reactions fence"></a>
+      <input type="text" placeholder="Add a comment" [(ngModel)]="comment" />
+      <span *ngIf="showError" style="color: red; font-size: 9px">{{
+        error
+      }}</span>
+      <button type="submit" class="cmnBtn post-btn" (click)="saveFeedBack()">
+        Post
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--View Feedback Modal-->
+<ng-template #viewFeedback>
+  <div class="feedback-container">
+    <div class="modal-header">
+      <div class="modal-title">Feedback</div>
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <tabset #staticTabs>
+      <tab heading="All">
+        <p class="total">Total: {{ feedbackDetail.FeedbackCount }} Feedback</p>
+        <div class="feedback-content">
+          <div
+            class="feedback-content"
+            *ngFor="let item of feedbackDetail.FeedbackDetails"
+          >
+            <div class="row">
+              <div class="inner-main">
+                <div class="img-name d-flex align-items-center">
+                  <div class="user-avatar">
+                    <img
+                      id="imgProfilePhoto"
+                      class="img-circle"
+                      [src]="item.UserImageUrl"
+                      alt=""
+                    />
+                    <span class="reactions two-thumbs-up"></span>
+                  </div>
+                  <div class="user-text">
+                    <div class="user-name">
+                      {{ item.FirstName }} {{ item.LastName }}
+                    </div>
+                    <div class="feedback-text">
+                      <p class="read-more">{{ item.Comment }}</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="name-wrapper">
+                <div class="feedback-modify">
+                  <button class="btn cmnBtn">
+                    <i class="fa-solid fa-pencil fa-lg fa-fw"></i>
+                    Edit</button
+                  ><button class="btn cmnBtn">
+                    <i class="fa-regular fa-trash-can fa-fw"></i>
+                    Delete
+                  </button>
+                </div>
+              </div> -->
+              </div>
+
+              <div class="inner-main1">
+                <div class="date-time">{{ item.CreatedOn }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</ng-template>
+
+<!-- Modal -->
+<!-- <div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Feedback</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="home-tab-pane"
+              aria-selected="true"
+            >
+              All
+            </button>
+          </li>
+           <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#profile-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="profile-tab-pane"
+              aria-selected="false"
+            >
+              1
+            </button>
+          </li> -
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane fade show active"
+            id="home-tab-pane"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+            tabindex="0"
+          >
+            <p class="total">
+              Total: {{ feedbackDetail.FeedbackCount }} Feedback
+            </p>
+            <div
+              class="feedback-content"
+              *ngFor="let item of feedbackDetail.FeedbackDetails"
+            >
+              <div class="row">
+                <div class="inner-main">
+                  <div class="img-name d-flex align-items-center">
+                    <div class="user-avatar">
+                      <img
+                        id="imgProfilePhoto"
+                        class="img-circle"
+                        [src]="item.UserImageUrl"
+                        alt=""
+                      />
+                      <span class="reactions two-thumbs-up"></span>
+                    </div>
+                    <div class="user-text">
+                      <div class="user-name">
+                        {{ item.FirstName }} {{ item.LastName }}
+                      </div>
+                      <div class="feedback-text">
+                        <p class="read-more">{{ item.Comment }}</p>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="name-wrapper">
+                    <div class="feedback-modify">
+                      <button class="btn cmnBtn">
+                        <i class="fa-solid fa-pencil fa-lg fa-fw"></i>
+                        Edit</button
+                      ><button class="btn cmnBtn">
+                        <i class="fa-regular fa-trash-can fa-fw"></i>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="inner-main1">
+                  <div class="date-time">{{ item.CreatedOn }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="profile-tab-pane"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+            tabindex="0"
+          >
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!--
+<div
+  class="modal fade"
+  id="staticBackdropOne"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Success</h1>
+      </div>
+      <div class="modal-body">
+        <span>Thanks For Your Feedback!</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,13 @@
+<svg id="bubble-speech" xmlns="http://www.w3.org/2000/svg" width="23.784" height="23.784" viewBox="0 0 23.784 23.784">
+  <path id="Path_5654" data-name="Path 5654" d="M3.677,12.556A3.167,3.167,0,0,0,7.947,17a4.752,4.752,0,0,0,8.668.03A5.151,5.151,0,1,0,18.9,7.149,5.944,5.944,0,0,0,7.462,4.017a4.755,4.755,0,1,0-3.785,8.539Zm0,0" transform="translate(0 0)" fill="#497fa2"/>
+  <path id="Path_5655" data-name="Path 5655" d="M16.649,4.757a11.873,11.873,0,0,0-.7-4.017,5.939,5.939,0,0,0-8.49,3.277,4.755,4.755,0,1,0-3.785,8.539,3.16,3.16,0,0,0,.559,4.079c.173.008.347.013.522.013A11.892,11.892,0,0,0,16.649,4.757Zm0,0" transform="translate(0 0)" fill="#7da9c6"/>
+  <path id="Path_5656" data-name="Path 5656" d="M1.586,448.793A.793.793,0,1,1,.793,448,.793.793,0,0,1,1.586,448.793Zm0,0" transform="translate(0 -425.802)" fill="#7da9c6"/>
+  <path id="Path_5657" data-name="Path 5657" d="M51.171,377.586A1.586,1.586,0,1,1,49.586,376,1.586,1.586,0,0,1,51.171,377.586Zm0,0" transform="translate(-45.622 -357.37)" fill="#7da9c6"/>
+  <g id="Group_6983" data-name="Group 6983" transform="translate(9.117 1.189)">
+    <path id="Path_5658" data-name="Path 5658" d="M280,192h.793v.793H280Zm0,0" transform="translate(-275.243 -183.676)" fill="#fff"/>
+    <path id="Path_5659" data-name="Path 5659" d="M248,192h.793v.793H248Zm0,0" transform="translate(-244.829 -183.676)" fill="#fff"/>
+    <path id="Path_5660" data-name="Path 5660" d="M216,192h.793v.793H216Zm0,0" transform="translate(-214.414 -183.676)" fill="#fff"/>
+    <path id="Path_5661" data-name="Path 5661" d="M184,192h.793v.793H184Zm0,0" transform="translate(-184 -183.676)" fill="#fff"/>
+    <path id="Path_5662" data-name="Path 5662" d="M268.757,28.757h-.793A3.968,3.968,0,0,0,264,24.793V24A4.762,4.762,0,0,1,268.757,28.757Zm0,0" transform="translate(-260.036 -24)" fill="#fff"/>
+  </g>
+</svg>

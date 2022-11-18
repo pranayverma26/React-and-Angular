@@ -1,0 +1,14 @@
+$primary-button: #255f82;
+$secondary-color: #4288af;
+$lightblue: #4bc7e7;
+
+@mixin leftBorder {
+    content: "";
+    position: absolute;
+    background: $lightblue;
+    height: 56px;
+    width: 5px;
+    left: 0;
+    top: 0;
+    border-radius: 5px 0 0 0;
+}

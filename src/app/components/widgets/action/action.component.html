@@ -1,0 +1,24 @@
+<div
+  class="col-xl-12 col-lg-12 col-md-12"
+  [ngStyle]="{ 'background-color': actionBar.barColor }"
+>
+  <div class="action-items-card" id="action-items">
+    <div class="ng-card action-item" id="actionItemList">
+      <!-- Action Items -->
+
+      <div
+        class="ng-card ng-wrapper-card shadow-none border-radius-none"
+        id="your-action-items"
+      >
+        <h3 class="ng-card-title">Your Action Items</h3>
+
+        <div class="row">
+          <app-action-card
+            [actionList]="Action"
+            [actionTheme]="actionThemeOne"
+          ></app-action-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

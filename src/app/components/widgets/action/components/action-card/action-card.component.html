@@ -1,0 +1,66 @@
+<div class="ng-pre-action-items" id="pre-action-items">
+  <div class="ng-pre-training">
+    <div aria-live="polite" class="ng-slick-list draggable">
+      <div class="ng-slick-track">
+        <div
+          class="ng-item ng-slick-slide ng-slick-current ng-slick-active"
+          tabindex="-1"
+          role="group"
+          aria-describedby="slick-slide00"
+          data-slick-index="0"
+          aria-hidden="false"
+        >
+          <div class="ng-card" *ngFor="let action of actionList">
+            <div
+              class="ng-num"
+              [ngStyle]="{ 'background-color': actionTheme.idColor }"
+            >
+              {{ action.id }}
+            </div>
+            <div class="ng-title-wrapper">
+              <img src="{{ action.imgUrl }}" alt="kikk" />
+              <h3 class="ng-title">
+                {{ action.title }}
+                <div class="duration">{{ action.duration }}</div>
+              </h3>
+            </div>
+            <p>{{ action.para }}</p>
+            <div class="ng-rated-count">
+              <span>{{ action.rate }}</span
+              >{{ action.topic }}
+            </div>
+            <div class="ng-flex-div">
+              <a
+                *ngIf="action.isReadOnly"
+                href="#rate-course-feedback"
+                class="btn btn-outline-primary left-align"
+                tabindex="0"
+                [ngStyle]="{
+                  'background-color': actionTheme.buttonColor,
+                  color: actionTheme.textColor
+                }"
+                >{{ action.Btntxt }}</a
+              >
+              <div
+                class="ng-status"
+                *ngIf="!action.isReadOnly"
+                [ngStyle]="{ color: actionTheme.completeColor }"
+              >
+                <i
+                  style="margin-right: 5px"
+                  class="fa-solid fa-circle-check"
+                ></i
+                ><span [ngStyle]="{ color: actionTheme.completeColor }"
+                  >Complete</span
+                >
+              </div>
+              <div class="ng-users-wrapper" *ngIf="!action.isReadOnly">
+                <app-respond [Action]="'respond'"></app-respond>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

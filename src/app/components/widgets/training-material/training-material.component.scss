@@ -1,0 +1,196 @@
+@import "../../../../variables.scss";
+
+.training-material {
+  box-shadow: 2px 1px 5px #D9DFE8;
+  border-radius: 5px;
+  position: relative;
+  margin-top: 20px;
+  background: #fff;
+  .text-sec {
+    padding: 20px 16px 10px;
+    p {
+        margin: 0;
+    }
+  }
+  &:before {
+    @include leftBorder;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  .nav-tabs {
+    li {
+      outline: none;
+      button {
+        color: #182949;
+        outline: none;
+        height: 70px;
+        font-weight: 600;
+        span {
+            border: solid 1px $primary-button;
+            margin-left: 6px;
+            border-radius: 30px;
+            padding: 0 12px;
+            color: $primary-button;
+        }
+      }
+    }
+  }
+}
+
+.training-material .nav-tabs li button.active {
+  border-bottom: solid 4px $lightblue;
+  color: #182949;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-bottom: 4px;
+}
+
+.training-material .nav-tabs li button,
+.training-material .nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.training-material .nav-tabs li button span.active {
+    background-color: $primary-button;
+    color: #fff;
+}
+
+.tab-content {
+    background-color: #E8F1F6;
+    #v-pills-tab {
+        width: 35%;
+        height: 570px;
+        overflow-y: auto;
+        display: inline-block;
+    }    
+    #v-pills-tabContent {
+        width: 65%;
+    }
+    button {
+        color: #4E6E7D;
+        border-radius: 0;
+        text-align: left;
+        font-weight: 600;
+        height: 80px;
+        width: 100%;
+        i {
+            color: #eb1010;
+            margin-right: 5px;
+        }
+    }
+}
+ 
+.search-box {
+    display: flex;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    padding: 20px 15px;
+    border-bottom: 1px dashed #D5D5D5;
+    margin-bottom: 20px;
+    i {
+        position: absolute;
+        left: 28px;
+        font-size: 14px;
+    }
+    input {
+        width: 225px;
+        border-radius: 30px;
+        padding: 6px 37px;
+        font-size: 15px;
+        height: 42px;
+        border: none;
+    }
+}
+
+.tab-content button.active {
+    background: #fff;
+}
+
+.video-det-sec {
+    background: #fff;
+    margin-top: -4px;
+    padding: 20px;
+}
+
+.post-keyaway {
+    padding: 10px 0;
+    p {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: #123FB8;
+    }
+    i {
+        background-color: $primary-button;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        margin-right: 10px;
+    }
+}
+
+.give-feedback p {
+    color: #212529;
+    font-weight: 600;
+}
+
+.error {
+    text-align: center;
+    height: 500px;
+    margin-top: 40px;
+    margin: 100px;
+    border: 2px dotted black;
+    padding-top: 200px;
+    border-radius: 20px;
+}
+
+.modal-header h5 {
+    color: $primary-button;
+}
+
+.modal-footer {
+    justify-content: start;
+    button {
+        background-color: $primary-button;
+        border-color: $primary-button;
+        color: #fff;
+    }
+}
+
+.modal.show .modal-dialog {
+    width: 600px;
+}
+
+.file {
+    height: 400px;
+    font-size: larger;
+    padding-top: 149px;
+    text-align: center;
+    border: 2px dotted;
+    padding-bottom: 57px;
+    margin-bottom: 10px;
+}
+
+.file.video-container,
+.file.pdf-container {
+    padding-top: 20px;
+}
+
+@media(max-width: 767px) {
+    .tab-wrapper {
+        display: block !important;
+        #v-pills-tab{
+            width: 100%;
+        }
+        #v-pills-tabContent{
+            width: 100%;
+        }
+    }
+}

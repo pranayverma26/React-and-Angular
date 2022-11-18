@@ -1,0 +1,174 @@
+<section class="training-material" id="training" style="position: relative">
+  <div class="text-sec" [ngStyle]="{ 'border-left-color': trainingTheme.barColor }">
+    <h2>Training Material & Resources</h2>
+    <p>
+      Videos, articles and documentation hand-picked to help you prepare for the
+      training course. With added context and knowledge, you're ready to the
+      ground running and get the most out of your training experience.
+    </p>
+  </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="recordings-tab" data-bs-toggle="tab" data-bs-target="#recordings-tab-pane"
+        type="button" role="tab" aria-controls="recordings-tab-pane" aria-selected="false" (click)="setTabDefault(0)">
+        Recordings <span>{{ trainingRecordings.length }}</span>
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="resource-tab" data-bs-toggle="tab" data-bs-target="#resource-tab-pane"
+        type="button" role="tab" aria-controls="resource-tab-pane" aria-selected="true" (click)="setTabDefault(1)">
+        Resources <span class="active">{{ trainingResources.length }}</span>
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="trm">
+    <div class="tab-pane fade" id="recordings-tab-pane" role="tabpanel" aria-labelledby="recordings-tab" tabindex="0">
+      <div class="tab-wrapper d-flex align-items-start">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search Recordings" [(ngModel)]="searchText" />
+          </div>
+
+          <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+            type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"
+            *ngFor="let item of trainingRecordings" (click)="buttonSelected = item.id">
+            <i class="fa-brands fa-youtube"></i>
+            {{ item.heading }}
+          </button>
+        </div>
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
+            tabindex="0" *ngFor="let item of trainingRecordings">
+            <div class="abc" *ngIf="buttonSelected == item.id">
+              <video controls="controls" preload="auto" style="width: 100%; height: 100%">
+                <source [src]="item.videoUrl" />
+              </video>
+              <div class="video-det-sec">
+                <div class="post-keyaway" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <p>
+                    <i class="fa-regular fa-pen-to-square"></i> Post a Key Takeaway
+                  </p>
+                </div>
+                <div class="give-feedback">
+                  <app-feedback [appData]="componentData" [widgetTypeName]="widgetTypeName" [itemId]="item.RecordingId"
+                    [showComments]="true"></app-feedback>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+            tabindex="0">
+            ...
+          </div>
+          <div class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab"
+            tabindex="0">
+            ......
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade show active" id="resource-tab-pane" role="tabpanel" aria-labelledby="resource-tab"
+      tabindex="0">
+      <div class="tab-wrapper d-flex align-items-start">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+            type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"
+            *ngFor="let item of trainingResources" (click)="buttonSelected = item.id">
+            <i *ngIf="item.typeid == resourceTypes.Youtube" class="fa-brands fa-youtube"></i>
+            <i *ngIf="item.typeid == resourceTypes.PDF" class="fa-solid fa-file-pdf"></i>
+            <i *ngIf="item.typeid == resourceTypes.WebURL" class="fa-solid fa-square-arrow-up-right"></i>
+            <i *ngIf="item.typeid == resourceTypes.WordDoc" class="fa-solid fa-file-word"></i>
+            <i *ngIf="item.typeid == resourceTypes.ExcelDoc" class="fa-solid fa-file-excel"></i>
+            <i *ngIf="item.typeid == resourceTypes.PPTDoc" class="fa-solid fa-file-powerpoint"></i>
+            {{ item.heading }}
+          </button>
+        </div>
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
+            tabindex="0" *ngFor="let item of trainingResources">
+            <div class="abc" *ngIf="buttonSelected == item.id">
+              <div class="file video-container" *ngIf="item.typeid == resourceTypes.Youtube">
+                <a Style="text-decoration:auto; font-size:20px; " controls="controls" preload="auto" [href]="">
+                  {{item.heading }}
+                </a>
+                <iframe width="100%" height="315" [src]="item.sanitizedURL" allowfullscreen></iframe>
+              </div>
+              <div class="file video-container" *ngIf="isOfficeDoc(item.typeid)">
+                <a Style="text-decoration:auto; font-size:20px; " controls="controls" preload="auto" [href]="">
+                  {{item.heading }}
+                </a>
+                <ngx-doc-viewer [url]="item.URL" viewer="office" style="width: 100%; height: 315px"></ngx-doc-viewer>
+              </div>
+              <div class="file" *ngIf="item.typeid == resourceTypes.WebURL">
+                <a Style="text-decoration:auto; font-size:20px; " controls="controls" preload="auto" [href]="">
+                  {{item.heading }}</a>
+                <p>
+                  <strong>Click below to open this document in new window</strong>
+                </p>
+                <a id="webUrlLink" target="_blank" aria-label="open resource url in new tab" [href]="item.URL">
+                  <i style="font-size: 50px; color: red" class="fa-solid fa-square-arrow-up-right"></i>
+                </a>
+              </div>
+              <div class="file pdf-container" *ngIf="item.typeid == resourceTypes.PDF">
+                <a Style="text-decoration:auto; " controls="controls" preload="auto" [href]="">{{ item.heading }}
+                  <a id="webUrlLink" target="_blank" aria-label="open resource url in new tab" [href]="item.URL">
+                    <i style="font-size: 22px; color: red" class="fa-solid fa-external-link"></i>
+                  </a>
+                </a>
+                <embed [src]="item.sanitizedURL" width="100%" height="345" type="application/pdf" />
+              </div>
+              <div class="video-det-sec">
+                <div class="post-keyaway" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                  (click)="openModal(addKeytakeaway)">
+                  <p>
+                    <i class="fa-regular fa-pen-to-square"></i> Post a Key Takeaway
+                  </p>
+                </div>
+                <div class="give-feedback">
+                  <app-feedback [appData]="componentData" [widgetTypeName]="widgetTypeName" [itemId]="item.ResourceId"
+                    [showComments]="true"></app-feedback>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+            tabindex="0">
+            ...
+          </div>
+          <div class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab"
+            tabindex="0">
+            ......
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center loaderContainer" *ngIf="showLoader">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</section>
+<ng-template #addKeytakeaway>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel">Add Key Takeaways</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modalRef?.hide()"></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"
+          [(ngModel)]="comments"></textarea>
+        <label for="floatingTextarea2">Comments</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" [disabled]="!comments" (click)="saveKeyTakeAwayNotes()">
+        Submit
+      </button>
+    </div>
+  </div>
+</ng-template>

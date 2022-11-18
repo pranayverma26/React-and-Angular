@@ -1,0 +1,117 @@
+@import "../../../../variables.scss";
+
+.topics-session {
+  box-shadow: 2px 1px 5px #D9DFE8;
+  border-radius: 5px;
+  margin-top: 10px;
+  position: relative;
+  padding-bottom: 30px;
+  background: #fff;
+  &:before{
+    @include leftBorder;
+  }
+  h2{
+    color: #182949;
+    font-size: 16px;
+    font-weight: 700;
+    border-bottom: 1px solid #eee;
+    padding: 20px 20px 17px;
+  }
+  h3{
+    font-size: 16px;
+    font-weight: 500;
+    color: #182949;
+    margin-bottom: 13px;
+  }
+  .main {
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+    .desc-sec {
+      h6{
+        margin: 0;
+      }
+    }
+  }
+  .det-sec {
+    h4{
+      margin-bottom: 14px;
+    }
+    span{
+      color: #182949;
+      font-weight: 500;
+    }
+    p{
+      margin-top: 17px;
+      padding-left: 15px;
+    }
+  }
+  .facil-main {
+    border-top: 1px solid #7bafcd;
+    padding-top: 15px;
+    margin-top: 20px;
+    .desc-sec {
+      a{
+        color: #000099;
+        text-decoration: none;
+      }
+    }
+  }
+  .facil-sec {
+    width: 33.33%;
+    margin-bottom: 15px;
+    .desc-sec{
+      margin-left: 13px;
+    }
+    .inner {
+      .img-sec {
+        img{
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.facilator-main{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) and (max-width: 1199px){
+  .topics-session {
+    .facil-sec{
+      width: 100%;
+    }
+  }
+}
+
+@media(max-width: 767px){
+  .topics-session {
+    .main {
+      .det-sec{
+        h4{
+          margin-top: 9px;
+          font-size: 18px;
+          margin-bottom: 5px;
+        }
+        p {
+          padding-left: 0;
+        }
+        span{
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .facilator-main{
+    display: block;
+    .facil-sec{
+      width: 100%;
+    }
+  }
+}
