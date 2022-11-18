@@ -1,0 +1,39 @@
+<svg id="Group_6988" data-name="Group 6988" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="49.988" height="49.988" viewBox="0 0 49.988 49.988">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fd3a84"/>
+      <stop offset="1" stop-color="#ffa68d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffc2cc"/>
+      <stop offset="1" stop-color="#fff2f4"/>
+    </linearGradient>
+  </defs>
+  <g id="asteroid" transform="translate(0 0)">
+    <path id="Path_5288" data-name="Path 5288" d="M150,30h2.929v2.929H150Z" transform="translate(-135.355 -27.071)" fill="#ffda44"/>
+    <path id="Path_5289" data-name="Path 5289" d="M210,0h2.929V2.929H210Z" transform="translate(-189.497)" fill="#ffda44"/>
+    <g id="Group_6432" data-name="Group 6432" transform="translate(35.343 32.414)">
+      <path id="Path_5290" data-name="Path 5290" d="M422,422h2.929v2.929H422Z" transform="translate(-416.142 -413.213)" fill="#ffb655"/>
+      <path id="Path_5291" data-name="Path 5291" d="M422,332h2.929v2.929H422Z" transform="translate(-416.142 -332)" fill="#ffb655"/>
+      <path id="Path_5292" data-name="Path 5292" d="M362,392h2.929v2.929H362Z" transform="translate(-362 -386.142)" fill="#ffb655"/>
+    </g>
+    <path id="Path_5293" data-name="Path 5293" d="M89.2,64.848l1.2-6.088-3.8.829L57.723,85.7,47.842,98.346h0a15.93,15.93,0,0,0,26.715-7.4,29.35,29.35,0,0,1,7.8-13.6l10.8-10.8Z" transform="translate(-43.171 -53.023)" fill="#ff415b"/>
+    <path id="Path_5294" data-name="Path 5294" d="M35.343,34.555l-1.7-5.492-7.866,7.866a29.916,29.916,0,0,1-13.764,7.918,15.93,15.93,0,0,0-7.34,26.7L43.428,32.792Z" transform="translate(0 -26.226)" fill="#ff8859"/>
+    <path id="Path_5295" data-name="Path 5295" d="M83.413,284.668A11.015,11.015,0,1,0,98.991,269.09l-9.17,6.408Z" transform="translate(-75.269 -242.818)" fill="#ffda44"/>
+    <path id="Path_5296" data-name="Path 5296" d="M61.336,235.99a11.015,11.015,0,0,0-7.789,18.81l15.578-15.578A10.987,10.987,0,0,0,61.336,235.99Z" transform="translate(-45.403 -212.95)" fill="#fff79f"/>
+    <path id="Path_5297" data-name="Path 5297" d="M104.616,301.731a8.088,8.088,0,1,0,11.438-11.438l-7.1,4.338Z" transform="translate(-94.402 -261.951)" fill="#ff8859"/>
+    <path id="Path_5298" data-name="Path 5298" d="M88.407,265.99a8.088,8.088,0,0,0-5.719,13.81l11.438-11.438A8.066,8.066,0,0,0,88.407,265.99Z" transform="translate(-72.474 -240.021)" fill="#ffb655"/>
+  </g>
+  <g id="heart_2_" data-name="heart (2)" transform="translate(7.444 25.788)">
+    <g id="Group_6434" data-name="Group 6434" transform="translate(0 0)">
+      <g id="Group_6433" data-name="Group 6433" transform="translate(0 0)">
+        <ellipse id="Ellipse_30" data-name="Ellipse 30" cx="8.241" cy="8.241" rx="8.241" ry="8.241" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_6436" data-name="Group 6436" transform="translate(2.961 3.953)">
+      <g id="Group_6435" data-name="Group 6435">
+        <path id="Path_5301" data-name="Path 5301" d="M98.7,121a2.788,2.788,0,0,0-2.406,1.478A2.788,2.788,0,0,0,93.887,121a2.732,2.732,0,0,0-2.1.973A3.4,3.4,0,0,0,91,124.194a4.111,4.111,0,0,0,1.08,2.662,23.828,23.828,0,0,0,2.648,2.545c.4.348.808.708,1.244,1.1a.481.481,0,0,0,.644,0c.436-.393.847-.753,1.244-1.1a23.823,23.823,0,0,0,2.648-2.544,4.11,4.11,0,0,0,1.08-2.662A3,3,0,0,0,98.7,121Z" transform="translate(-91 -121)" fill="url(#linear-gradient-2)"/>
+      </g>
+    </g>
+  </g>
+</svg>

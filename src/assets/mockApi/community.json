@@ -1,0 +1,48 @@
+[
+  {
+      "HeaderDomainModel": {
+          "Title": null,
+          "Description": null,
+          "FeedbackExchanges": 0,
+          "Engagements": 0,
+          "AcknowledgementCount": 0,
+          "EncouragementCount": 0,
+          "FeedbackExchangeCount": 0,
+          "EngagementModel": null,
+          "TotalProjects": 0,
+          "TotalUsers": 0,
+          "StatusId": 0,
+          "AttachmentFile": null,
+          "ImagePath": null,
+          "UrlName": null
+      },
+      "SessionName": "Cohort 07 - Session 01",
+      "TrainingFloId": 472,
+      "EngagementUsersModel": [],
+      "CommunityType": "Pre Community ",
+      "CommunityDateTime": "June 27, 28"
+  },
+  {
+      "HeaderDomainModel": {
+          "Title": null,
+          "Description": null,
+          "FeedbackExchanges": 0,
+          "Engagements": 0,
+          "AcknowledgementCount": 0,
+          "EncouragementCount": 0,
+          "FeedbackExchangeCount": 0,
+          "EngagementModel": null,
+          "TotalProjects": 0,
+          "TotalUsers": 0,
+          "StatusId": 0,
+          "AttachmentFile": null,
+          "ImagePath": null,
+          "UrlName": null
+      },
+      "SessionName": "Cohort 07 - Session 01",
+      "TrainingFloId": 472,
+      "EngagementUsersModel": [],
+      "CommunityType": "Post Community",
+      "CommunityDateTime": "June 28 | 03 PM "
+  }
+]

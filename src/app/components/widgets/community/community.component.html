@@ -1,0 +1,449 @@
+<section>
+  <button class="leftIcon" (click)="hideLeftMenu()" *ngIf="!showLeftMenu">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div class="card wrapper-card mt-1" id="ng-your-action-items">
+    <div class="ng-pre-action-items ng-session-customtab" id="pre-action-items">
+      <!-- <div class="ng-session-items-link">
+        <div class="ng-view-wrapper">
+          <label for="sessionDropdown">Select Session:</label>
+          <select
+            class="ng-custom-select"
+            onchange="changeSession(this)"
+            id="ng-sessionDropdown"
+          >
+            <option value="472/1517">Cohort 07 - Session 01</option>
+            <option value="473/2044">Cohort 07 - Session 02</option>
+            <option value="474/2112">Cohort 07 - Session 03</option>
+          </select>
+        </div>
+      </div> -->
+
+      <div>
+        <tabset #staticTabs>
+          <tab
+            id="0"
+            (selectTab)="onSelect($event)"
+            customClass="communityTabCustomClass"
+          >
+            <ng-template tabHeading>
+              <div class="tab-mob">
+                <i *ngIf="activeTab == 0" class="fa-solid fa-circle-check"></i>
+                <span class="hidden-sm-up">Pre Community</span>
+                <div class="ng-date-time-md">
+                  {{ preCommunity?.CommunityDateTime }}
+                </div>
+              </div>
+            </ng-template>
+            <div class="ng-tab-content">
+              <div class="ng-pre-training" id="overview">
+                <div class="ng-requirements-wrapper">
+                  <div class="ng-learnings w-100">
+                    <div class="card no-card">
+                      <!-- <h1 class="card-title" style="overflow-wrap: break-word">
+                                                Welcome To Session
+                                                <span style="margin-left: 3px">{{ item.Session }}</span>
+                                            </h1> -->
+                      <div class="two-column-box">
+                        <div class="card-body row">
+                          <div class="col-lg-4 col-md-12 img-wrapper">
+                            <!-- <img src="{{ item.imgUrl }}" alt="Session 03" /> -->
+                            <img
+                              [src]="preCommunity?.HeaderDomainModel?.ImagePath"
+                              class="img-fluid"
+                              alt="Img"
+                            />
+                          </div>
+                          <div
+                            class="col-lg-8 col-md-12 text-wrapper next-event"
+                          >
+                            <!-- <h2 class="sub-title mt-0">
+                              <span style="margin-right: 2px">{{item.MainDate}}</span>
+                              Product and Operations
+                            </h2> -->
+                            <h2>{{ preCommunity?.SessionName }}</h2>
+                            <p>
+                              {{
+                                preCommunity?.HeaderDomainModel?.Description ||
+                                  SubPara
+                              }}
+                            </p>
+                            <!-- <ul>
+                              <li>Dallas history in one slide</li>
+                              <li>Startup growth in Dallas</li>
+                              <li>Why doing business is good in Dallas</li>
+                              <li>What we do well</li>
+                              <li>Big companies you need to know</li>
+                            </ul> -->
+                            <!-- <a href="#">View More</a> -->
+                            <div class="ng-engagement-wrapper">
+                              <div class="ng-engagements">
+                                <div class="row w-100">
+                                  <div class="col-md-8 mt-3">
+                                    <div class="ng-date-stamp">
+                                      <i class="fa-solid fa-calendar-days"></i>
+                                      <span class="semibold"
+                                        >{{
+                                          preCommunity?.CommunityDateTime
+                                        }}
+                                        CST</span
+                                      >
+                                    </div>
+                                    <!-- <div class="ng-date-stamp">
+                                      <i class="fa-solid fa-clock"></i>
+                                      <span class="semibold">{{
+                                        preCommunity?.CommunityDateTime
+                                      }}</span>
+                                    </div> -->
+                                    <!-- <div class="ng-date-stamp">
+                                      <a href="#learningContent">
+                                        <img
+                                          class="sm-icon-img"
+                                          src="https://catapult.trainup.net/images/capital-one/review.svg"
+                                          alt="Access Course Recordings"
+                                        />
+                                        <span class="semibold"
+                                          >Access Course Recording</span
+                                        >
+                                      </a>
+                                    </div> -->
+                                    <div class="ng-date-stamp">
+                                      <a
+                                        href="javascript:void()"
+                                        (click)="openModal(template)"
+                                      >
+                                        <img
+                                          class="sm-icon-img"
+                                          src="assets/images/video-icon.png"
+                                          alt="Meeting Details"
+                                        />
+                                        <span class="semibold"
+                                          >Meeting Details</span
+                                        >
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-8 mt-3">
+                                    <!-- <div class="ng-date-stamp">
+                                      <i class="fa-regular fa-calendar"></i>
+                                      <span class="semibold">{{
+                                        preCommunity?.CommunityDateTime
+                                      }}</span>
+                                    </div> -->
+                                    <!-- <div class="ng-date-stamp">
+                                      <i class="fa-solid fa-clock"></i>
+                                      <span class="semibold">{{
+                                        preCommunity?.CommunityDateTime
+                                      }}</span>
+                                    </div> -->
+                                    <!-- <div class="ng-date-stamp">
+                                      <a href="#learningContent">
+                                        <img
+                                          class="sm-icon-img"
+                                          src="https://catapult.trainup.net/images/capital-one/review.svg"
+                                          alt="Access Course Recordings"
+                                        />
+                                        <span class="semibold"
+                                          >Access Course Recording</span
+                                        >
+                                      </a>
+                                    </div> -->
+                                  </div>
+                                </div>
+                                <div class="users-wrapper"></div>
+                              </div>
+                            </div>
+
+                            <!-- <div class="reg-atten">
+                              <h6>Registered Attendees</h6>
+                            </div>
+                            <div class="ng-meet-det">
+                              <div class="d-flex">
+                                <div class="main"></div>
+                                <div class="sub-main d-flex">
+                                  <div class="inner">
+                                    <a
+                                      href="#"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#exampleModal"
+                                    >
+                                      <img
+                                        src="assets/images/video-icon.png"
+                                        class="img-fluid"
+                                        alt=""
+                                      />
+                                      <span>Meeting Details</span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+          <tab
+            id="1"
+            (selectTab)="onSelect($event)"
+            customClass="communityTabCustomClass"
+            [disabled]="!componentData?.IspostcommunityEnabled"
+          >
+            <ng-template tabHeading>
+              <div class="tab-mob">
+                <i *ngIf="activeTab == 1" class="fa-solid fa-circle-check"></i>
+                <span class="hidden-sm-up">Post Community</span>
+                <div class="ng-date-time-md">
+                  {{ postCommunity?.CommunityDateTime }}
+                </div>
+              </div>
+            </ng-template>
+            <div class="tab-content">
+              <div class="tab-pane active" id="postCommunity?" role="tabpanel">
+                <div class="ng-pre-training" id="overview">
+                  <div class="ng-requirements-wrapper">
+                    <div class="ng-learnings w-100">
+                      <div class="card no-card">
+                        <!-- <h1 class="card-title" style="overflow-wrap: break-word">
+                                                                    Welcome To Session
+                                                                    <span style="margin-left: 3px">
+                            {{ item.Session }}</span
+                          >
+                        </h1> -->
+
+                        <div class="two-column-box">
+                          <div class="card-body row">
+                            <div class="col-lg-3 col-md-12 img-wrapper">
+                              <img
+                                [src]="
+                                  postCommunity?.HeaderDomainModel?.ImagePath
+                                "
+                                alt="Img"
+                              />
+                            </div>
+                            <div
+                              class="col-lg-9 col-md-12 text-wrapper next-event"
+                            >
+                              <!-- <p class="">
+                                {{ SubPara }}
+                              </p> -->
+                              <h2>{{ postCommunity?.SessionName }}</h2>
+                              <p>
+                                {{
+                                  postCommunity?.HeaderDomainModel
+                                    ?.Description || SubPara
+                                }}
+                              </p>
+                              <div class="ng-engagement-wrapper">
+                                <div class="ng-engagements">
+                                  <div class="row w-100">
+                                    <div class="col-md-8 mt-3">
+                                      <div class="ng-date-stamp">
+                                        <i
+                                          class="fa-solid fa-calendar-days"
+                                        ></i>
+                                        <span class="semibold"
+                                          >{{
+                                            postCommunity?.CommunityDateTime
+                                          }}
+                                          CST</span
+                                        >
+                                      </div>
+                                      <!-- <div class="ng-date-stamp">
+                                        <i class="fa-solid fa-clock"></i>
+                                        <span class="semibold">{{
+                                          postCommunity?.CommunityDateTime
+                                        }}</span>
+                                      </div> -->
+                                      <!-- <div class="ng-date-stamp">
+                                        <a href="#learningContent">
+                                          <img
+                                            class="sm-icon-img"
+                                            src="https://catapult.trainup.net/images/capital-one/review.svg"
+                                            alt="Access Course Recordings"
+                                          />
+                                          <span
+                                            class="semibold"
+                                            (click)="openModal(template)"
+                                            >Meeting Details</span
+                                          >
+                                        </a>
+                                      </div> -->
+                                    </div>
+                                    <!-- <div class="col-md-4 mt-3">
+                                      <div class="ng-date-stamp">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <span class="semibold">{{
+                                          postCommunity?.CommunityDateTime
+                                        }}</span>
+                                      </div>
+                                      <div class="ng-date-stamp">
+                                        <i class="fa-solid fa-clock"></i>
+                                        <span class="semibold">{{
+                                          postCommunity?.CommunityDateTime
+                                        }}</span>
+                                      </div>
+                                      <div class="ng-date-stamp">
+                                        <a href="#learningContent">
+                                          <img
+                                            class="sm-icon-img"
+                                            src="https://catapult.trainup.net/images/capital-one/review.svg"
+                                            alt="Access Course Recordings"
+                                          />
+                                          <span
+                                            class="semibold"
+                                            (click)="openModal(template)"
+                                            >Meeting Details</span
+                                          >
+                                        </a>
+                                      </div>
+                                    </div> -->
+                                  </div>
+                                  <div class="users-wrapper"></div>
+                                </div>
+                              </div>
+                              <div class="ng-access-course">
+                                <a (click)="scrollSectionURL()">
+                                  <img
+                                    src="assets/images/video-icon.png"
+                                    class="img-fluid"
+                                    alt=""
+                                  />
+                                  <span>Access Course Recording</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="d-flex justify-content-center loaderContainer" *ngIf="showLoader">
+  <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<!-- <ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      After taking all four sessions, which of them do you feel will be the
+      mosthelpful to you on Monday morning?
+    </h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">Thankyou</div>
+</ng-template> -->
+<ng-template #template>
+  <!-- <div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+> -->
+  <!-- <div class="modal-dialog modal-dialog-centered"> -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Meeting Details</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      ></button>
+    </div>
+    <div
+      class="modal-body"
+      *ngIf="componentData?.TrainingFloId !== TrainingFloId"
+    >
+      <div class="text-sec">
+        <p>
+          Join Zoom Meeting:
+          <a
+            href="https://us02web.zoom.us/j/2700733298?pwd=TmVma2ZKQmU1YU1QcktVd2pTbjJGdz09"
+            target="_blank"
+            ><span
+              >https://us02web.zoom.us/j/2700733298?pwd=TmVma2ZKQmU1YU1QcktVd2pTbjJGdz09
+            </span></a
+          >
+        </p>
+
+        <p style="margin-top: 15px">
+          Meeting ID: 270 073 3298<br />
+          Passcode: 111<br />
+          One tap mobile<br />
+          From Capital One internal US phones: +13462487799, 2700733298# US
+          (Houston)<br />
+          From Capital One Video Conf Rooms: +16699009128, 2700733298# US (San
+          Jose)
+        </p>
+        <p style="margin-top: 15px; margin-bottom: 10px">Or iPhone one-tap:</p>
+        <p style="margin-top: 15px">
+          Dial by your location:Dial by your location +1 346 248 7799 US
+          (Houston)<br />
+          +1 669 900 9128 US (San Jose)<br />
+          +1 719 359 4580 US<br />
+          +1 253 215 8782 US (Tacoma)<br />
+          +1 669 444 9171 US<br />
+          +1 386 347 5053 US<br />
+          +1 564 217 2000 US<br />
+          +1 646 558 8656 US (New York)<br />
+          +1 646 931 3860 US<br />
+          +1 301 715 8592 US (Washington DC)<br />
+          +1 309 205 3325 US<br />
+          +1 312 626 6799 US (Chicago)<br />
+        </p>
+        <p style="margin-top: 15px; margin-bottom: 15px">
+          Find your local number:
+          <a href="https://us02web.zoom.us/u/kdYO6U3D2X"
+            >https://us02web.zoom.us/u/kdYO6U3D2X</a
+          >
+        </p>
+      </div>
+    </div>
+    <div
+      class="modal-body"
+      *ngIf="componentData?.TrainingFloId == TrainingFloId"
+    >
+      <div class="text-sec">
+        <p>
+          Join Google Meet Meeting:
+          <a href="https://meet.google.com/jxc-qxxh-wss" target="_blank"
+            ><span>https://meet.google.com/jxc-qxxh-wss </span></a
+          >
+        </p>
+
+        <p style="margin-top: 15px">
+          Meeting ID: jxc-qxxh-wss<br />
+          Passcode: 102248365<br />
+          Join by Phone:<br />
+          (US) +1 574-404-7824
+        </p>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+  <!-- </div> -->
+</ng-template>

@@ -1,0 +1,227 @@
+<div class="learning" style="position: relative;">
+  <div class="text-sec">
+    <h2>What's Happening In Learning</h2>
+    <p>
+      Read up on top news, learning application stories, key takeaways and more.
+    </p>
+  </div>
+
+  <div class="learn-main d-flex">
+    <div class="learn-inner">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <!-- <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="home-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#home-tab-pane"
+            type="button"
+            role="tab"
+            aria-controls="home-tab-pane"
+            aria-selected="true"
+          >
+            Announcement
+            <span>{{learningData.length}}</span>
+          </button>
+        </li> -->
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#profile-tab-pane"
+            type="button"
+            role="tab"
+            aria-controls="profile-tab-pane"
+            aria-selected="false"
+            [class.active]="defaultSelectedTab === 0"
+            [attr.aria-selected]="defaultSelectedTab === 0"
+          >
+            Discussion Question <span>{{ discussionQuestions.length }}</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="contact-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#contact-tab-pane"
+            type="button"
+            role="tab"
+            aria-controls="contact-tab-pane"
+            aria-selected="false"
+            [class.active]="defaultSelectedTab === 1"
+            [attr.aria-selected]="defaultSelectedTab === 1"
+          >
+            Key Takeaways <span>{{ keyTakeAway.length }}</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="sort">
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Sort By: Newer First</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <img src="assets/images/6.svg" class="img-fluid" alt="" />
+      <img src="assets/images/5.svg" class="img-fluid" alt="" />
+    </div>
+  </div>
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="home-tab-pane"
+      role="tabpanel"
+      aria-labelledby="home-tab"
+      tabindex="0"
+    >
+      <div class="news-main-wrapper">
+        <div class="news-main">
+          <div
+            class="news-card"
+            Style="width:100%"
+            *ngFor="let item of learningData"
+          >
+            <div class="news-inner">
+              <h6>{{ item.topic }}</h6>
+              <img [src]="item.imgUrl" class="img-fluid" alt="" />
+              <p>{{ item.content }}</p>
+              <span>{{ item.contentdata }}</span>
+              <div class="more-btn">
+                <a href="javascript:void();">Know More</a>
+              </div>
+              <div class="news-comment d-flex">
+                <div class="inner">
+                  <span>02 . 2 comments</span>
+                </div>
+                <div class="inner1">
+                  <app-respond [Learning]="'respond'"></app-respond>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="profile-tab-pane"
+      role="tabpanel"
+      aria-labelledby="profile-tab"
+      tabindex="0"
+      [class.active]="defaultSelectedTab === 0"
+      [class.show]="defaultSelectedTab === 0"
+    >
+      <div class="row">
+        <div class="news-main">
+          <ngx-slick-carousel
+            class="carousel"
+            #slickModaldq="slick-carousel"
+            [config]="slideConfig"
+            (init)="slickInit($event)"
+            (breakpoint)="breakpoint($event)"
+            (afterChange)="afterChange($event)"
+            (beforeChange)="beforeChange($event)"
+          >
+            <div
+              class="dis-ques"
+              ngxSlickItem
+              *ngFor="let item of discussionQuestions; let i = index"
+            >
+              <div class="ques-main">
+                <p class="ques-resp">Discussion Question Responses</p>
+                <div class="main">
+                  <div class="inner">
+                    <img [src]="item?.UserProfileImage" />
+                  </div>
+                  <div class="inner1">
+                    <h6>{{ item?.FirstName }}{{ item?.LastName }}</h6>
+                    <span>{{ item?.CreatedOn }}</span>
+                  </div>
+                </div>
+                <div class="text-sec">
+                  <h4>{{ item?.Response }}</h4>
+                  <p><i class="fa-solid fa-tag"></i> {{ item.Question }}</p>
+                  <a href="#" (click)="openModal(knowMore, item)">Know More</a>
+                </div>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="contact-tab-pane"
+      role="tabpanel"
+      aria-labelledby="contact-tab"
+      tabindex="0"
+      [class.active]="defaultSelectedTab === 1"
+      [class.show]="defaultSelectedTab === 1"
+    >
+      <app-Card
+        [keyTakeAwayList]="keyTakeAway"
+        [appData]="componentData"
+        [showKey]="showData"
+      ></app-Card>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center loaderContainer" *ngIf="showLoader">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+
+<ng-template #knowMore style="vertical-align:center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="modal-title col-md-12 card-title">Discussion Question Response</div>
+
+        <div class="ng-author" style="margin-top: 10px">
+          <div class="avatar">
+            <img
+              id="imgPhoto"
+              src="{{ response?.UserProfileImage }}"
+              alt="Profile"
+            />
+          </div>
+          <div class="ng-name-details" style="font-size: 15px">
+            <span class="ng-name">{{ response?.FirstName }}{{ response?.LastName }}</span>
+            <span class="ng-date-stamp">{{ response?.CreatedOn }}</span>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h4 class="card-title mb-3" style="overflow-wrap: break-word">
+        {{ response?.Response }}
+      </h4>
+      <p><i class="fa-solid fa-tag"></i> {{ response.Question }}</p>
+      <!-- {{ keyTakeaway.description }} -->
+      <div class="row" style="margin-top: 10px">
+        <div class="give-feedback">
+          <app-feedback
+            [appData]="componentData"
+            [widgetTypeName]="widgetTypeName"
+            [itemId]="response?.DiscussionQuestionResponseId"
+            [showComments]="true"
+          ></app-feedback>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

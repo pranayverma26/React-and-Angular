@@ -1,0 +1,42 @@
+{
+  "WidgetId": 0,
+  "TrainingFloId": 0,
+  "DiscussionQuestions": [
+      {
+          "DiscussionQuestionId": 237,
+          "Question": "First DiscussionQuestion"
+      },
+      {
+          "DiscussionQuestionId": 238,
+          "Question": "Second DiscussionQuestion"
+      },
+      {
+          "DiscussionQuestionId": 239,
+          "Question": "After the Innovative Mindset workshop, what innovative shifts and changes have you noticed in your own daily practices, interactions with team members, and within your organization as a whole?"
+      },
+      {
+          "DiscussionQuestionId": 240,
+          "Question": "What insight(s) are you going to share with your team? "
+      },
+      {
+          "DiscussionQuestionId": 241,
+          "Question": "What's one behavior you are willing to modify and what are you going to replace it with?"
+      },
+      {
+          "DiscussionQuestionId": 242,
+          "Question": "Who will you share your wins with on this journey? "
+      }
+  ],
+  "DiscussionQuestionResponses": [
+      {
+          "DiscussionQuestionResponseId": 1329,
+          "DiscussionQuestionId": 239,
+          "UserId": 133243,
+          "Response": "test comment",
+          "FirstName": "Anjana",
+          "LastName": "Kamath",
+          "UserProfileImage": "/ProfileImages/capitalone/profile-pic.jpg",
+          "CreatedOn": "/Date(1663890271347)/"
+      }
+  ]
+}

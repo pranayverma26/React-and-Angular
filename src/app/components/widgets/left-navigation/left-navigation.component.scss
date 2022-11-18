@@ -1,0 +1,221 @@
+@import "../../../../variables.scss";
+
+.navigation{
+  .logo-sec {
+    margin: 15px 0 20px;
+    padding: 0 20px;
+    img{
+      &:nth-child(1) {
+        width: 120px;
+        margin-right: 15px;
+        border-right: 1px solid #dae3ee;
+        padding-right: 20px;
+      }
+      &:nth-child(2) {
+        height: 54px;
+      }
+    }
+  }
+  ul {
+    padding: 0;
+    margin-top: 20px;
+    li {
+      list-style-type: none;
+      margin-bottom: 25px;
+      position: relative;
+      padding: 0 0 8px;
+      span {
+        color: $primary-button;
+        font-size: 12px;
+        display: flex;
+        margin-left: 30px;
+        line-height: normal;
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        ins {
+          background-color: $primary-button;
+          border-radius: 4px 4px 0 4px;
+          color: #fff;
+          padding: 2px 5px;
+          text-decoration: none;
+          margin-right: 5px;
+        }
+      }
+      i {
+        margin-right: 8px;
+        color: #686868;
+        float: left;
+        margin-top: 3px;
+      }
+      a {
+        text-decoration: none;
+        .active{
+          &:before {
+            content: "";
+            background-color: $lightblue;
+            border-radius: 0 5px 5px 0;
+            height: 42px;
+            width: 5px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+          }
+          i {
+            color: $lightblue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.navigation ul li span.menu-title {
+  font-size: 15px;
+  color: #3a3838;
+}
+
+.navigation ul li a.active span.menu-title {
+  color: $primary-button !important;
+  font-weight: 500;
+}
+
+.login {
+  margin-bottom: 20px;
+  .login-user {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    .dropdown {
+      ul {
+        li {
+          margin-bottom: 0;
+          padding: 0;
+          a {
+            padding: 10px 23px;
+          }
+        }
+      }
+    }
+    i {
+      float: left;
+      background: #556080;
+      color: #fff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .dropdown {
+      button {
+        color: $primary-button;
+        border: none;
+        background: transparent;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.admin-mode {
+  padding-left: 85px;
+  font-size: 15px;
+  color: $primary-button;
+  .txt-sec {
+    p{
+      margin: 0;    
+    }
+    button {
+      padding: 0;
+      font-weight: normal;
+    }
+  }
+}
+
+.admin-mode {
+  .txt-sec {
+    border-top: 1px solid #e1e1e1;
+    padding: 12px 0;
+    margin-top: 12px;
+  }
+  select {
+    border: none;
+    padding: 0;
+    color: $primary-button;
+    font-size: 15px;
+    margin-top: 7px;
+  }
+}
+
+.leftIcon {
+  box-shadow: -1px 0 2px rgb(0 0 0 / 30%);
+  background-color: $primary-button;
+  border-radius: 50%;
+  border: solid 4px $primary-button;
+  height: 28px;
+  width: 28px;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  line-height: 19px;
+  position: fixed;
+  left: 16%;
+  top: 110px;
+  z-index: 99999;
+}
+
+.selected a span{
+  color: $secondary-color !important;
+  font-weight: 500;
+}
+
+.navigation ul li span.menu-title.disable {
+  color: #acacac;
+}
+
+/* .navigation ul li span.menu-title:hover {
+  text-decoration: underline;
+} */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navigation {
+    .logo-sec {
+      img{
+        &:nth-child(1) {
+          width: auto;
+          margin-right: 10px;
+          padding-right: 15px;
+          height: 35px;
+        }
+        &:nth-child(2) {
+          height: 38px;
+        }
+      }
+    }
+  }
+  .leftIcon {
+    left: 20%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navigation {
+    .logo-sec{
+      img{
+        &:nth-child(1) {
+          width: auto;
+          margin-right: 11px;
+          padding-right: 13px;
+          height: 40px;
+        }
+        &:nth-child(2) {
+          height: 37px;
+        }
+      }
+    }
+  }
+}

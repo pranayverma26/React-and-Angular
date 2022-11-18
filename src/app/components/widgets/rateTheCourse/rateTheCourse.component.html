@@ -1,0 +1,254 @@
+<div class="rate-course" *ngIf="!isUserProvidedRating">
+  <h2>Rate The Course & Give Feedback</h2>
+  <div class="row align-items-end">
+    <div class="inner">
+      <div class="course-feed-wrapper">
+        <div class="course-feedback">
+          <div class="ratings-main">
+            <div class="feed-title">
+              <span>ACKNOWLEDGE</span>
+              <span>ENCOURAGE</span>
+            </div>
+            <div class="enc-ratings">
+              <button
+                (click)="setRating(469)"
+                [ngClass]="currentSelected === 469 ? currentActive : blank"
+              >
+                <span class="img-wrapper"></span>
+                <span class="label-text">Totally Changed My View</span>
+              </button>
+              <button
+                (click)="setRating(470)"
+                [ngClass]="currentSelected === 470 ? currentActive : blank"
+              >
+                <span class="img-wrapper"></span>
+                <span class="label-text">Immediately Impactful</span>
+              </button>
+              <button
+                (click)="setRating(477)"
+                [ngClass]="currentSelected === 477 ? currentActive : blank"
+              >
+                <span class="img-wrapper"></span>
+                <span class="label-text">I Learned Something</span>
+              </button>
+              <button
+                (click)="setRating(472)"
+                [ngClass]="currentSelected === 472 ? currentActive : blank"
+              >
+                <span class="img-wrapper"></span>
+                <span class="label-text">Made Me Reconsider</span>
+              </button>
+              <button
+                (click)="setRating(473)"
+                [ngClass]="currentSelected === 473 ? currentActive : blank"
+              >
+                <span class="img-wrapper"></span>
+                <span class="label-text">I Expected More</span>
+              </button>
+              <button
+                (click)="setRating(480)"
+                [ngClass]="currentSelected === 480 ? currentActive : blank"
+              >
+                <span class="img-wrapper"></span>
+                <span class="label-text">Not What I Expected</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inner1">
+      <div class="feed-comment-sec">
+        <span>0 . {{ commentCount }} comments</span>
+        <input
+          type="text"
+          placeholder="Add your comment"
+          [(ngModel)]="comment"
+          [disabled]="currentSelected === 0"
+        />
+        <button
+          type="button"
+          class="btn submitBtn cmnBtn"
+          (click)="saveCourseRating()"
+          [disabled]="currentSelected === 0 || comment.length === 0"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isUserProvidedRating">
+  <div class="feedback-content">
+    <div class="rate-topic">
+      <h2>Rate The Topic & Give Feedback</h2>
+      <p>Thanks for leaving your feedback. Check out what others had to say.</p>
+
+      <div class="ack-ratings d-flex flex-wrap">
+        <div class="main d-flex align-items-center">
+          <div class="inner">
+            <img
+              src="assets/images/changed-view.svg"
+              class="img-fluid"
+              alt=""
+            />
+            <p>Totally Changed My View</p>
+            <div class="feed-count">
+              <span>{{ changedMyViewCount }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="main d-flex align-items-center">
+          <div class="inner">
+            <img src="assets/images/impactful.svg" class="img-fluid" alt="" />
+            <p>Immediately Impactful</p>
+            <div class="feed-count">
+              <span>{{ impactFulCount }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="main d-flex align-items-center">
+          <div class="inner">
+            <img src="assets/images/learned.svg" class="img-fluid" alt="" />
+            <p>I Learned Something</p>
+            <div class="feed-count">
+              <span>{{ learnedSomeCount }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="main d-flex align-items-center">
+          <div class="inner">
+            <img src="assets/images/reconsider.svg" class="img-fluid" alt="" />
+            <p>Made Me Reconsider</p>
+            <div class="feed-count">
+              <span>{{ madeMeConsiderCount }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="main d-flex align-items-center">
+          <div class="inner">
+            <img
+              src="assets/images/expected-more.svg"
+              class="img-fluid"
+              alt=""
+            />
+            <p>I Expected More</p>
+            <div class="feed-count">
+              <span>{{ expectedMoreCount }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="main d-flex align-items-center">
+          <div class="inner">
+            <img
+              src="assets/images/not-expected.svg"
+              class="img-fluid"
+              alt=""
+            />
+            <p>Not What I Expected</p>
+            <div class="feed-count">
+              <span>{{ notWhatIExpectedCount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cmt-sect d-flex">
+        <span>{{ commentCount }} Comments</span>
+        <div class="view-all d-flex justify-content-end">
+          <!-- <button>View all</button> -->
+        </div>
+      </div>
+      <div *ngFor="let item of courseRatingResponses">
+        <div class="feed-chat d-flex">
+          <div class="sub-inner d-flex align-items-center">
+            <img
+              [src]="item.UserProfileImage"
+              class="rounded-circle img-fluid"
+              alt="profile pic"
+            />
+            <div class="text-sec">
+              <h6>{{ item.UserFirstName }} {{ item.UserLastName }}</h6>
+              <p>{{ item.Comment }}</p>
+            </div>
+          </div>
+          <div class="sub-inner1">
+            <span>{{ item.CreatedOn }}</span>
+          </div>
+        </div>
+
+        <div class="edit-del-btn" *ngIf="item.allowEdit && !item.showEditBox">
+          <button class="btn" (click)="editFedBackComment(item)">
+            <i class="fa-solid fa-pencil fa-lg fa-fw"></i> Edit
+          </button>
+          <button
+            class="btn"
+            (click)="onDeleteComment(deleteCommentModal, item)"
+          >
+            <i class="fa-regular fa-trash-can fa-fw"></i> Delete
+          </button>
+        </div>
+        <div *ngIf="item.showEditBox" class="edit-del-btn">
+          <input type="text" [(ngModel)]="editedComment" class="editComment" />
+          <div class="feedback-modify">
+            <button class="btn cmnBtn cancel-btn" (click)="cancelEdit()">
+              <i class="fa-solid fa-xmark"></i>
+              cancel</button
+            ><button class="btn cmnBtn" (click)="saveEdit(item)">
+              <i class="fa-solid fa-floppy-disk"></i>
+              Save
+            </button>
+          </div>
+        </div>
+        <div class="edit-del-btn">
+          <div id="ratingFeedBack">
+            <div class="ng-feedback-wrapper">
+              <app-feedback
+                [appData]="componentData"
+                [inputWidgetId]="item.WidgetId"
+                [itemId]="item.CourseRatingResponseId"
+                [showComments]="true"
+                style="width: 100%"
+              ></app-feedback>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #deleteCommentModal>
+  <div class="modal-header">
+    <div class="row">
+      <div class="icon" style="text-align: center; font-size: 150px">
+        <i class="fa-solid fa-circle-exclamation"></i>
+      </div>
+      <div class="row">
+        <div class="head">
+          <h3 style="text-align: center">Delete Alert</h3>
+          <p style="text-align: center">Are you sure to delete this comment</p>
+        </div>
+      </div>
+      <div
+        class="buttons"
+        style="display: flex; gap: 5px; flex-direction: row-reverse"
+      >
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="modalRef?.hide()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="deleteComment()"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

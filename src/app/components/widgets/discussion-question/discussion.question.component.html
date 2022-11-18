@@ -1,0 +1,281 @@
+<div class="ng-response-questions" style="height: 705px; position: relative">
+  <div class="ng-discussion-questions" *ngIf="!showLoader">
+    <div class="DQ">
+      <ngx-slick-carousel
+        class="carousel"
+        #slickModal="slick-carousel"
+        [config]="slideConfig"
+        (init)="slickInit($event)"
+        (breakpoint)="breakpoint($event)"
+        (afterChange)="afterChange($event)"
+        (beforeChange)="beforeChange($event)"
+      >
+        <div
+          class="ng-dq-wrapper mb-3"
+          ngxSlickItem
+          *ngFor="let item of discussionQuestions; let index = index"
+        >
+          <div class="ng-left-col">
+            <h3 class="section-title">Discussion Question</h3>
+
+            <div class="ng-que-text">
+              <div class="ng-ribbon">
+                <span class="ng-question">
+                  Question {{ index + 1 }}/{{
+                    discussionQuestions.length
+                  }}</span
+                >
+              </div>
+              {{ item.Question }}
+            </div>
+            <form
+              id="discussionResponse245"
+              method="post"
+              data-discussionquestionid="245"
+              *ngIf="!item.isResponded"
+            >
+              <div class="ng-d-flex">
+                <div class="ng-avatar mt-1">
+                  <img
+                    src="https://catapult.trainup.net//ProfileImages/capitalone/profile-pic.jpg"
+                    alt="profile-pic"
+                  />
+                </div>
+                <textarea
+                  aria-label="label for the Add a response"
+                  aria-labelledby="discussionQuestion1"
+                  class="form-control mb-3"
+                  cols="20"
+                  id="Response245"
+                  name="DiscussionQuestionModel.Response"
+                  placeholder="Add a response"
+                  required="required"
+                  rows="1"
+                  [(ngModel)]="discussion"
+                  #box
+                ></textarea>
+                <span
+                  class="field-validation-valid error"
+                  data-valmsg-for="DiscussionQuestionModel.Response"
+                  data-valmsg-replace="true"
+                  id="discussionQuestionError"
+                ></span>
+              </div>
+              <div class="ng-text-right">
+                <button
+                  [disabled]="discussion.length === 0"
+                  tabindex="0"
+                  id="submitDiscussionQuestionResponse"
+                  type="button"
+                  (click)="
+                    DiscussionQuestionSave(item, box.value, discussionSuccess);
+                    submit = !submit
+                  "
+                  class="btn btn-sm btn-primary cmnBtn"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+            <div
+              id="discussionQuestionSuccess"
+              class="error mb-2 ng-text-success"
+              style="text-align: center; font-size: 24px"
+              *ngIf="item.isResponded"
+            >
+              You have already responded question
+            </div>
+          </div>
+
+          <div class="ng-right-col ng-responses-section">
+            <div class="ng-latest-responses">
+              <div
+                class="flex-div mt-0 mb-3 align-items-start ng-responses-title"
+              >
+                <div class="section-title d-flex">
+                  Responses ({{ item.response.length }})
+                </div>
+                <div class="ng-no-response" *ngIf="item.response.length == 0">
+                  <span>&nbsp;</span>
+                  <p>Be the first person to respond</p>
+                </div>
+                <input
+                  type="hidden"
+                  id="hiddenResponseIdForDQDallas"
+                  value=""
+                />
+                <div
+                  class="ng-rating-feedback"
+                  #scrollbar
+                  *ngIf="item.response.length > 0"
+                >
+                  <div
+                    class="ng-feedback-row"
+                    *ngFor="let val of item.response; let i = index"
+                  >
+                    <div class="ng-user-avatar">
+                      <img [src]="val.UserProfileImage" alt="Radha" />
+                    </div>
+                    <div class="ng-user-details clearFix">
+                      <span class="ng-name"
+                        >{{ val.FirstName }} {{ val.LastName }}</span
+                      >
+                      <span class="ng-date-time">
+                        {{ currentDate | date: "MM-dd-yyyy" }}</span
+                      >
+                      <div class="ng-feedback-text">
+                        <p id="paraComment1309">{{ val.Response }}</p>
+                        <form class="mb-4" *ngIf="val.showEdit">
+                          <div class="forom-row">
+                            <textarea
+                              class="form-control mt-15"
+                              [id]="val.DiscussionQuestionResponseId"
+                              placeholder=""
+                              aria-label="Type discussion question response"
+                              #editedResponse
+                              [value]="val.Response"
+
+                            >
+                            </textarea>
+                          </div>
+                          <div class="form-row mt-3">
+                            <button
+                              tabindex="0"
+                              type="button"
+                              id="btnCancel1309"
+                              (click)="onEdit(index, val, false)"
+                              class="btn btn-outline mr-2"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              tabindex="0"
+                              type="button"
+                              id="btnSave1309"
+                              class="btn btn-primary"
+                              (click)="onSave(index, val, editedResponse.value)"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                      <div
+                        class="ng-actions"
+                        *ngIf="!val.showEdit"
+                      >
+                      <div class="act"   *ngIf="val.UserId === componentData.UserId">
+                        <a
+                          aria-label="Edit discussion quetions comment"
+                          role="button"
+                          (click)="onEdit(index, val, true)"
+                          id="edit"
+                          ><i class="fa-solid fa-pen"></i> Edit</a
+                        >
+                        <a
+                          aria-label="Update discussion quetions comment"
+                          role="button"
+                          (click)="openDeleteModal(deleteComment, index, val)"
+                          id="delete"
+                          ><i class="fa-solid fa-trash"></i> Delete</a
+                        >
+                      </div>
+                      </div>
+                      <div class="ng-feedback-action w-100">
+                        <div id="discussionQuestionFeedback">
+                          <div class="ng-feedback-wrapper" *ngIf="!val.showEdit">
+                            <app-feedback
+                              [appData]="componentData"
+                              [widgetTypeName]="widgetTypeName"
+                              [itemId]="val.DiscussionQuestionResponseId"
+                              [showComments]="true"
+                              style="width: 100%"
+                            ></app-feedback>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center loaderContainer" *ngIf="showLoader">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #deleteComment>
+  <div class="modal-header">
+    <div class="row">
+      <div class="icon" style="text-align: center; font-size: 150px">
+        <i class="fa-solid fa-circle-exclamation"></i>
+      </div>
+      <div class="row">
+        <div class="head">
+          <h3 style="text-align: center">Delete Alert</h3>
+          <p style="text-align: center">Are you sure to delete this comment</p>
+        </div>
+      </div>
+      <div
+        class="buttons"
+        style="display: flex; gap: 5px; flex-direction: row-reverse"
+      >
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="modalRef?.hide()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="DeleteComment()"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #discussionSuccess>
+  <div class="modal-header">
+    <div class="row">
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+      <div
+        class="icon"
+        style="text-align: center; font-size: 150px; color: #46ff7d"
+      >
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div class="row">
+        <div class="head">
+          <h3 style="text-align: center">Thank you!</h3>
+          <p style="text-align: center">Your response Added Succesfully</p>
+        </div>
+      </div>
+      <div
+        class="buttons"
+        style="display: flex; gap: 5px; flex-direction: row-reverse"
+      >
+
+
+      </div>
+    </div>
+  </div>
+</ng-template>

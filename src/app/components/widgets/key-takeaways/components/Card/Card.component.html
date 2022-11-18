@@ -1,0 +1,821 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="ng-learning ng-featured">
+      <!-- <div class="semibold ml-35">Top Featured</div> -->
+      <ngx-slick-carousel
+        class="carousel"
+        #slickModal="slick-carousel"
+        [config]="slideConfig"
+        (init)="slickInit($event)"
+        (breakpoint)="breakpoint($event)"
+        (afterChange)="afterChange($event)"
+        (beforeChange)="beforeChange($event)"
+      >
+        <div
+          ngxSlickItem
+          class="slide"
+          *ngFor="let key of keyTakeAwayList; let index = index"
+        >
+          <div area-live="polite" class="ng-cardLayout">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-wrapper">
+                  <p class="my-kt mb-0" *ngIf="!showKey">key Takeaway</p>
+                  <div class="ng-inline-box">
+                    <div class="ng-author">
+                      <div class="avatar">
+                        <img
+                          id="imgPhoto"
+                          src="{{ key.ProfileImageUrl }}"
+                          alt="Profile Image"
+                        />
+                      </div>
+                      <div class="ng-name-details">
+                        <span class="ng-name">{{ key.UserName }}</span>
+                        <span class="ng-date-stamp"
+                          >{{ key.CreatedDate }}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="ng-l-type" *ngIf="false">
+                      <div class="ng-actions">
+                        <a
+                          data-toggle="modal"
+                          data-target="#addKeyTakeaways"
+                          tabindex="0"
+                          (click)="openModal(editKeytakeaway, key)"
+                          ><i class="fa-solid fa-pen"></i>Edit</a
+                        >
+                        <a
+                          aria-label="Delete Key Takeaway"
+                          (click)="openModal(deleteTakeAway, key)"
+                          tabindex="0"
+                          ><i class="fa-solid fa-trash-can"></i> Delete</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="ng-img-wrapper" *ngIf="key.attachment">
+                    <img src="{{ key.attachment }}" alt=" image" />
+                  </div> -->
+                  <h4
+                    class="ng-card-title mb-3"
+                    style="
+                      overflow-wrap: break-word;
+                      font-size: 14px;
+                      margin-top: 20px;
+                    "
+                  >
+                    <!-- {{ key.session }} -->
+                  </h4>
+                  <p class="my-kt mb-0" *ngIf="showKey">My Takeaways:</p>
+                  <p class="discription class">
+                    {{ key.Notes }}
+                  </p>
+                </div>
+                <div class="link-wrapper">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    (click)="openModal(knowMore, key)"
+                  >
+                    know more
+                  </button>
+                </div>
+                <div class="comment-sect">
+                  <app-feedback
+                    [feedBackData]="!showFeedback"
+                    [appData]="componentData"
+                    [widgetTypeName]="widgetTypeName"
+                    [itemId]="key.KeyTakeawayId"
+                    [showComments]="true"
+                  ></app-feedback>
+                </div>
+                <!-- <div class="ng-engagements">
+                  <div class="ng-feedback-wrapper">
+                    <div class="ng-feedback-details" tabindex="0">
+                      <button
+                        name="View feedback"
+                        data-toggle="modal"
+                        data-target="#viewFeedback"
+                        class="reactions two-thumbs-up"
+                        aria-label="two-thumbs-up"
+                        tabindex="0"
+                        (click)="openModal(viewFeedback, key)"
+                      >
+                        <i class="fa-solid fa-thumbs-up"></i>
+                      </button>
+                      <a
+                        data-toggle="modal"
+                        data-target="#viewFeedback"
+                        class="ng-count"
+                        id="feedbackCount"
+                        aria-label="1 feedback"
+                        name="1 feedback"
+                        tabindex="0"
+                        >{{ key.feedbackCount }}</a
+                      >
+                    </div>
+                    <div class="ng-users-wrapper" style="margin-left: 30px">
+                      <div class="ng-user" style="height: 50px; width: 50px">
+                        <img
+                          id="imgPhoto"
+                          class="img-circle"
+                          src="{{ key.userImage }}"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <!-- <div class="col-md-12" style="margin: 15px 0px 10px 0px; text-align: end">
+    <button
+      class="btn btn-outline-primary view-all-btn cmnBtn"
+      (click)="openModal(viewAllTakeAway)"
+      [ngStyle]="{
+        'background-color': knowtheme.ViewAll,
+        color: knowtheme.textColor
+      }"
+    >
+      View ALL
+    </button>
+  </div> -->
+</div>
+
+<ng-template #knowMore style="vertical-align: center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="modal-title col-md-12 card-title">Key Takeaways</div>
+
+        <div class="ng-author" style="margin-top: 10px">
+          <div class="avatar">
+            <img
+              id="imgPhoto"
+              src="{{ keyTakeaway.ProfileImageUrl }}"
+              alt="Profile"
+            />
+          </div>
+          <div class="ng-name-details" style="font-size: 15px">
+            <span class="ng-name">{{ keyTakeaway.UserName }}</span>
+            <span class="ng-date-stamp">{{ keyTakeaway.CreatedDate }}</span>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h4 class="card-title mb-3" style="overflow-wrap: break-word">
+        {{ keyTakeaway.Notes }}
+      </h4>
+      <!-- {{ keyTakeaway.description }} -->
+      <div class="row" style="margin-top: 10px">
+        <div class="give-feedback">
+          <app-feedback
+            [appData]="componentData"
+            [widgetTypeName]="widgetTypeName"
+            [itemId]="keyTakeaway.KeyTakeawayId"
+            [showComments]="true"
+          ></app-feedback>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #editKeytakeaway>
+  <div class="modal-header">
+    <div class="row">
+      <div class="col-md-12 card-title">Key Takeaways</div>
+    </div>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="needs-validation" novalidate="">
+      <div class="form-row">
+        <div class="form-group col-md-12 not-empty">
+          <!-- <h6>{{ keyTakeaway.session }}</h6> -->
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="keytakeAwayNote">Comments</label>
+          <!-- <textarea
+            class="form-control"
+            rows="5"
+            id="keytakeAwayNote"
+            required=""
+            data-error="Please write a comment"
+            aria-label="Please write a comment"
+            >{{ keyTakeaway.description }}</textarea
+          > -->
+        </div>
+      </div>
+      <div id="divAttachment" style="display: none">
+        <p id="attachmentFile"></p>
+        <a aria-label="remove attachment" onclick="removeAttachment()"
+          ><i class="icon-delete"></i> Delete</a
+        >
+      </div>
+      <div class="form-row mt4">
+        <div class="col-md-12">
+          <span class="sm-text">Attachments</span>
+        </div>
+        <div class="form-group col-md-12">
+          <ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label
+              >Drag and drop a file here or click</ngx-dropzone-label
+            >
+            <ngx-dropzone-preview
+              *ngFor="let f of files"
+              [removable]="true"
+              (removed)="onRemove(f)"
+            >
+              <ngx-dropzone-label
+                >{{ f.name }} ({{ f.type }})</ngx-dropzone-label
+              >
+            </ngx-dropzone-preview>
+          </ngx-dropzone>
+        </div>
+      </div>
+      <div class="mt-4">
+        <button
+          tabindex="0"
+          type="button"
+          class="btn btn-primary btn-submit"
+          (click)="SaveKeytakeawayNotes()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #deleteTakeAway>
+  <div class="modal-header">
+    <div class="row">
+      <div class="icon" style="text-align: center; font-size: 150px">
+        <i class="fa-solid fa-circle-exclamation"></i>
+      </div>
+      <div class="row">
+        <div class="head">
+          <h3 style="text-align: center">Delete Alert</h3>
+          <p style="text-align: center">
+            <!-- Are you sure to delete this keyTakeaway {{ keyTakeaway.session }} -->
+          </p>
+        </div>
+      </div>
+      <div
+        class="buttons"
+        style="display: flex; gap: 5px; flex-direction: row-reverse"
+      >
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="modalRef?.hide()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="DeleteItem(keyTakeaway)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #viewAllTakeAway>
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="modal-title col-md-12 card-title">Key Takeaways</div>
+      </div>
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="max-height: 500px; overflow-y: auto">
+      <div
+        class="card"
+        *ngFor="let key of keyTakeAwayList"
+        style="margin: 15px 0px 15px 0px"
+      >
+        <div class="card-body">
+          <!-- <h5 class="card-title">{{ key.session }}</h5> -->
+          <p class="card-text">
+            <!-- {{ key.description }} -->
+          </p>
+          <div class="row" style="margin-top: 10px">
+            <!-- <div
+              class="col-4"
+              style="cursor: pointer"
+              (click)="giveFeedBack(key.id)"
+            > -->
+              <i class="fa-regular fa-thumbs-up"></i>
+              <span style="padding-left: 5px">Give Feedback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</ng-template>
+
+<!--View Feedback Modal-->
+<ng-template #viewFeedback>
+  <div class="feedback-container">
+    <div class="modal-header">
+      <div class="modal-title">Feedback</div>
+      <button
+        type="button"
+        class="btn-close close pull-right"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="home-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#home-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="home-tab-pane"
+          aria-selected="true"
+        >
+          All <span class="count">3</span>
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="profile-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#profile-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="profile-tab-pane"
+          aria-selected="false"
+        >
+          <span class="reactions two-thumbs-up"></span>
+          <span class="count">2</span>
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="contact-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#contact-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="contact-tab-pane"
+          aria-selected="false"
+        >
+          <span class="reactions makes-sense"
+            ><i class="fa-solid fa-hand-peace"></i
+          ></span>
+          <span class="count">1</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home-tab-pane"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+        tabindex="0"
+      >
+        <p class="total">Total: 3 Feedback</p>
+
+        <div class="feedback-content">
+          <div class="feedback-row" feedbackid="3712">
+            <div class="user-avatar">
+              <img
+                id="imgProfilePhoto"
+                class="img-circle"
+                src="https://catapult.trainup.net//ProfileImages/Capitalone/133083.jpg"
+                alt=""
+              />
+              <span class="reactions two-thumbs-up"></span>
+            </div>
+            <div class="user-details clearfix">
+              <div class="name-wrapper">
+                <div class="user-text">
+                  <div class="user-name">Uttam Kumar k kumar</div>
+                  <div class="date-time">8/24/2022 7:00:16 AM</div>
+                </div>
+                <div class="feedback-modify">
+                  <button class="feedback-edit">
+                    <i
+                      class="fa-solid fa-pencil fa-lg fa-fw"
+                      style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+                    ></i>
+                    Edit</button
+                  ><button class="feedback-delete">
+                    <i class="fa-regular fa-trash-can fa-fw"></i>
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div class="feedback-text">
+                <p class="read-more"></p>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-row" feedbackid="3704">
+            <div class="user-avatar">
+              <img
+                id="imgProfilePhoto"
+                class="img-circle"
+                src="https://catapult.trainup.net//ProfileImages/Capitalone/133083.jpg"
+                alt=""
+              />
+              <span class="reactions makes-sense"></span>
+            </div>
+            <div class="user-details clearfix">
+              <div class="name-wrapper">
+                <div class="user-text">
+                  <div class="user-name">Uttam Kumar k kumar</div>
+                  <div class="date-time">8/22/2022 4:47:43 AM</div>
+                </div>
+                <div class="feedback-modify">
+                  <button class="feedback-edit">
+                    <i
+                      class="fa-solid fa-pencil fa-lg fa-fw"
+                      style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+                    ></i>
+                    Edit</button
+                  ><button class="feedback-delete">
+                    <i class="fa-regular fa-trash-can fa-fw"></i>
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div class="feedback-text">
+                <p class="read-more"></p>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-row" feedbackid="3694">
+            <div class="user-avatar">
+              <img
+                id="imgProfilePhoto"
+                class="img-circle"
+                src="https://catapult.trainup.net//ProfileImages/Capitalone/133168.jpg"
+                alt=""
+              />
+              <span class="reactions two-thumbs-up"></span>
+            </div>
+
+            <div class="user-details clearfix">
+              <div class="name-wrapper">
+                <div class="user-text">
+                  <div class="user-name">Radha G</div>
+                  <div class="date-time">8/17/2022 10:10:57 AM</div>
+                </div>
+                <div class="feedback-modify">
+                  <button class="feedback-edit">
+                    <i
+                      class="fa-solid fa-pencil fa-lg fa-fw"
+                      style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+                    ></i>
+                    Edit</button
+                  ><button class="feedback-delete">
+                    <i
+                      class="fa-regular fa-trash-can fa-fw"
+                      style="color: #a0b2e2"
+                    ></i>
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div class="feedback-text">
+                <p class="read-more"></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Add a comment(optional)..."
+            ></textarea>
+          </div>
+          <button type="button" class="cancel-btn">Cancel</button>
+          <button type="button" class="Save-btn">Save</button>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="profile-tab-pane"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+        tabindex="0"
+      >
+        <p class="total">Total: 2 Feedback</p>
+
+        <div class="feedback-content">
+          <div class="feedback-row" feedbackid="3704">
+            <div class="user-avatar">
+              <img
+                id="imgProfilePhoto"
+                class="img-circle"
+                src="https://catapult.trainup.net//ProfileImages/Capitalone/133083.jpg"
+                alt=""
+              />
+              <span class="reactions makes-sense"></span>
+            </div>
+            <div class="user-details clearfix">
+              <div class="name-wrapper">
+                <div class="user-text">
+                  <div class="user-name">Uttam Kumar k kumar</div>
+                  <div class="date-time">8/22/2022 4:47:43 AM</div>
+                </div>
+                <div class="feedback-modify">
+                  <button class="feedback-edit">
+                    <i
+                      class="fa-solid fa-pencil fa-lg fa-fw"
+                      style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+                    ></i>
+                    Edit</button
+                  ><button class="feedback-delete">
+                    <i
+                      class="fa-regular fa-trash-can fa-fw"
+                      style="color: #a0b2e2"
+                    ></i>
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div class="feedback-text">
+                <p class="read-more"></p>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-row" feedbackid="3694">
+            <div class="user-avatar">
+              <img
+                id="imgProfilePhoto"
+                class="img-circle"
+                src="https://catapult.trainup.net//ProfileImages/Capitalone/133168.jpg"
+                alt=""
+              />
+              <span class="reactions two-thumbs-up"></span>
+            </div>
+
+            <div class="user-details clearfix">
+              <div class="name-wrapper">
+                <div class="user-text">
+                  <div class="user-name">Radha G</div>
+                  <div class="date-time">8/17/2022 10:10:57 AM</div>
+                </div>
+                <div class="feedback-modify">
+                  <button class="feedback-edit">
+                    <i
+                      class="fa-solid fa-pencil fa-lg fa-fw"
+                      style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+                    ></i>
+                    Edit</button
+                  ><button class="feedback-delete">
+                    <i
+                      class="fa-regular fa-trash-can fa-fw"
+                      style="color: #a0b2e2"
+                    ></i>
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div class="feedback-text">
+                <p class="read-more"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="contact-tab-pane"
+        role="tabpanel"
+        aria-labelledby="contact-tab"
+        tabindex="0"
+      >
+        <p class="total">Total: 1 Feedback</p>
+
+        <div class="feedback-row" feedbackid="3704">
+          <div class="user-avatar">
+            <img
+              id="imgProfilePhoto"
+              class="img-circle"
+              src="https://catapult.trainup.net//ProfileImages/Capitalone/133083.jpg"
+              alt=""
+            />
+            <span class="reactions makes-sense"></span>
+          </div>
+          <div class="user-details clearfix">
+            <div class="name-wrapper">
+              <div class="user-text">
+                <div class="user-name">Uttam Kumar k kumar</div>
+                <div class="date-time">8/22/2022 4:47:43 AM</div>
+              </div>
+              <div class="feedback-modify">
+                <button class="feedback-edit">
+                  <i
+                    class="fa-solid fa-pencil fa-lg fa-fw"
+                    style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+                  ></i>
+                  Edit</button
+                ><button class="feedback-delete">
+                  <i
+                    class="fa-regular fa-trash-can fa-fw"
+                    style="color: #a0b2e2"
+                  ></i>
+                  Delete
+                </button>
+              </div>
+            </div>
+            <div class="feedback-text">
+              <p class="read-more"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <p>
+    <a
+      class="btn btn-primary"
+      data-bs-toggle="collapse"
+      href="#collapseExample"
+      role="button"
+      aria-expanded="false"
+      aria-controls="collapseExample"
+    >
+      <button class="feedback-edit">
+        <i
+          class="fa-solid fa-pencil fa-lg fa-fw"
+          style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+        ></i>
+        Edit55
+      </button>
+    </a>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body" id="comment-collapse">
+      <div class="form-group">
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          placeholder="Add a comment(optional)..."
+        ></textarea>
+      </div>
+    </div>
+
+    <p>
+      <a
+        class="btn btn-Light"
+        data-bs-toggle="collapse"
+        href="#collapseExample"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Cancel
+      </a>
+
+      <button type="button" class="btn btn-primary">Save</button>
+    </p>
+  </div> -->
+</ng-template>
+
+<!-- <p>
+  <a
+    class="btn btn-primary"
+    data-bs-toggle="collapse"
+    href="#collapseExample"
+    role="button"
+    aria-expanded="false"
+    aria-controls="collapseExample"
+  >
+    <button class="feedback-edit">
+      <i
+        class="fa-solid fa-pencil fa-lg fa-fw"
+        style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+      ></i>
+      Edit33
+    </button>
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by
+    default but revealed when the user activates the relevant trigger.
+  </div>
+
+  <p>
+    <a
+      class="btn btn-primary"
+      data-bs-toggle="collapse"
+      href="#collapseExample"
+      role="button"
+      aria-expanded="false"
+      aria-controls="collapseExample"
+    >
+      edit-icn
+    </a>
+  </p>
+</div>
+
+<div class="form-group">
+  <textarea
+    class="form-control"
+    id="exampleFormControlTextarea1"
+    rows="3"
+    placeholder="Add a comment(optional)..."
+  ></textarea>
+</div>
+
+<button type="button" class="btn btn-primary">Primary</button> -->
+
+<!-- <div class="custom-section" id="custom-show">
+  <div class="form-group">
+    <textarea
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      placeholder="Add a comment(optional)..."
+    ></textarea>
+  </div>
+
+  <p>
+    <a
+      class="btn btn-Light"
+      data-bs-toggle="collapse"
+      href="#collapseExample"
+      role="button"
+      aria-expanded="false"
+      aria-controls="collapseExample"
+    >
+      Cancel
+    </a>
+
+    <button type="button" class="btn btn-primary">Save</button>
+  </p>
+</div>
+
+<div class="feedback-modify">
+  <button class="feedback-edit" onclick="show_hide()">
+    <i
+      class="fa-solid fa-pencil fa-lg fa-fw"
+      style="--fa-secondary-opacity: 0.1; color: #a0b2e2"
+    ></i>
+    Edit</button
+  ><button class="feedback-delete">
+    <i class="fa-regular fa-trash-can fa-fw"></i>
+    Delete
+  </button>
+</div> -->

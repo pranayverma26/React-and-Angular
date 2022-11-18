@@ -1,0 +1,109 @@
+<div class="ng-cardContainer">
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="row">
+        <div class="col-md-12 ng-card-title" [ngStyle]="{'background-color':countTheme.CountColor}">Key Takeaways</div>
+    </div>
+    <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+    <div class="d-flex align-items-center">
+        <div class="ng-count">
+            <span>{{ keyTakeawayCount }}</span>
+        </div>
+        <div class="ng-key-header">
+            <span> Key Takeaway Shared</span>
+        </div>
+        <!-- <div class="ng-key-header">
+            <app-respond [Key]="'imgSize'"></app-respond>
+        </div> -->
+        <div class="ng-key-takeawy" style="text-align: end">
+            <button type="button" class="btn btn-primary cmnBtn" (click)="openModal(addKeytakeaway)" [ngStyle]="{'background-color':countTheme.AddButton}">
+                Add Your Takeaway
+            </button>
+        </div>
+    </div>
+    <!-- Columns are always 50% wide, on mobile and desktop -->
+    <div class="row">
+        <app-Card [keyTakeAwayList]="keyTakeaway" [knowtheme]="KnowThemeOne" [appData]="componentData"></app-Card>
+    </div>
+</div>
+
+<ng-template #addKeytakeaway>
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-md-12 card-title">Key Takeaways</div>
+        </div>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="needs-validation" novalidate="">
+            <div class="form-row">
+                <div class="form-group col-md-12 not-empty">
+                    <h6>{{courseName}}</h6>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="keytakeAwayNote">Comments</label>
+                    <textarea class="form-control" name="keyComments" rows="5" [(ngModel)]="comments"></textarea>
+                </div>
+            </div>
+            <div id="divAttachment" style="display: none">
+                <p id="attachmentFile"></p>
+                <a aria-label="remove attachment" onclick="removeAttachment()"><i class="icon-delete"></i> Delete</a>
+            </div>
+            <!-- <div class="form-row mt4">
+                <div class="col-md-12">
+                    <span class="sm-text">Attachments</span>
+                </div>
+                <div class="form-group col-md-12">
+                    <ngx-dropzone (change)="onSelect($event)">
+                        <ngx-dropzone-label>Drag and drop a file here or click</ngx-dropzone-label>
+                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </ngx-dropzone>
+                </div>
+            </div> -->
+            <div class="mt-4">
+                <button tabindex="0" [disabled]="!comments"  type="button" class="btn btn-primary btn-submit" (click)="saveKeyTakeawayNotes(successKey)"
+              >
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #successKey>
+  <div class="modal-header">
+    <div class="row">
+      <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+      <div class="icon" style="text-align: center; font-size: 150px; color:  #46ff7d;">
+        <i  class="fa-solid fa-circle-check"></i>
+      </div>
+      <div class="row">
+        <div class="head">
+          <h3 style="text-align: center">Thank you!</h3>
+          <p style="text-align: center">
+            Your Takeaway Added Succesfully
+          </p>
+        </div>
+      </div>
+      <div
+        class="buttons"
+        style="display: flex; gap: 5px; flex-direction: row-reverse"
+      >
+
+
+      </div>
+    </div>
+  </div>
+</ng-template>

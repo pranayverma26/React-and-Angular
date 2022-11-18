@@ -1,0 +1,154 @@
+<div class="navigation">
+  <button class="leftIcon" (click)="hideleftMenu()" *ngIf="showLeftMenu">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div class="logo-sec d-flex justify-content-center">
+    <img
+      src="assets/images/logo4.jpg"
+      class="img-fluid"
+      alt=""
+      (click)="redirectBack()"
+      style="cursor: pointer"
+    />
+    <img
+      src="assets/images/logo3.jpg"
+      class="img-fluid"
+      alt=""
+      (click)="redirectBack()"
+      style="cursor: pointer"
+    />
+  </div>
+
+  <div class="login">
+    <div class="login-user">
+      <img
+        [src]="userImageUrl"
+        class="rounded-circle img-fluid"
+        style="width: 40px"
+        alt=""
+      />
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {{ this.componentData?.UserName }}
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="/WeDallas/myprofile">My Profile</a>
+          </li>
+          <li><a class="dropdown-item" href="/WeDallas/logoff">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="admin-mode">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Admin Mode
+        </label>
+      </div>
+      <div class="txt-sec">
+        <p>Switch Cohort</p>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Catapult-Cohort-07</option>
+          <option value="1">Catapult</option>
+        </select>
+      </div>
+    </div> -->
+  </div>
+
+  <!-- <ul>
+    <li>
+      <a href="#">
+        <i class="fa-solid fa-newspaper"></i>
+        <span class="menu-title">Overview</span>
+        <span><ins>0</ins> Members Engaged</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="active">
+        <i class="fa-solid fa-newspaper"></i>
+        <span class="menu-title">Learning Timeline</span>
+        <span><ins>0</ins> Items</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa-solid fa-newspaper"></i>
+        <span class="menu-title">Action Items</span>
+        <span><ins>0</ins> Items</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa-solid fa-newspaper"></i>
+        <span class="menu-title">Catapult Collaborators</span>
+        <span><ins>0</ins> Contributions</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa-solid fa-newspaper"></i>
+        <span class="menu-title">What's Happening in Learning</span>
+        <span><ins>0</ins> Contributions</span>
+      </a>
+    </li>
+  </ul> -->
+  <accordion [isAnimated]="true" style="padding: 6px">
+    <accordion-group
+      heading="Your Learning Timeline"
+      [isOpen]="true"
+      [panelClass]="'customAccordion'"
+    >
+    <span accordion-heading  (click)="collapse=!collapse">
+      <!-- <i class="fa-solid fa-chevron-up" *ngIf ="sessionData.length > 0"></i>
+      <i class="fa-solid fa-chevron-down" *ngIf ="sessionData.length == 0"></i> -->
+      <i class="fa-solid" [ngClass]="{'fa-chevron-up':collapse,' fa-chevron-down':!collapse}"></i>
+
+    </span>
+      <ul >
+        <li *ngFor="let item of sessionData" [ngClass]="{ 'selected': item.TrainingFloName === communityData.SessionName }">
+
+          <a
+            href="javascript:void();"
+            (click)="item.IsEnabled && getAppData(item, noPermission); collapse=!collapse;"
+            class="session-item"
+
+            [attr.aria-disabled]="!item.IsEnabled"
+          >
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span
+              class="menu-title"
+              [ngClass]="!item.IsEnabled ? 'disable' : ''"
+              [attr.aria-disabled]="!item.IsAllowed"
+              >{{ item.TrainingFloName }}</span
+            >
+          </a>
+        </li>
+      </ul>
+    </accordion-group>
+    <!-- <accordion-group heading="Menu" [panelClass]="'customAccordion'">
+      <p>Some content</p>
+    </accordion-group> -->
+  </accordion>
+</div>
+
+<ng-template #noPermission>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Access Denied.</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">You dont have access to this Session.</div>
+</ng-template>

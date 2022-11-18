@@ -1,4 +1,135 @@
-<div #reactComponentPlaceHolder>
+<div class="wrapper d-flex" *ngIf="!reloadComponent">
+  <div class="left" [ngClass]="showHideMenu ? 'left-left-menu' : 'left-menu'">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <app-header
+            [appData]="componentData"
+            [headerData]="communityData"
+            [showHideMenu]="showHideMenu"
+          ></app-header>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 px-0" *ngIf="showHideMenu">
+          <app-left-navigation
+            [appData]="componentData"
+            (showHideLeftMenu)="showHideLeftMenu()"
+            [sessionData]="sessionData"
+            [headerData]="communityData"
+            (componentDataChange)="updateComponentData($event)"
+          ></app-left-navigation>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="right"
+    [ngClass]="showHideMenu ? 'right-left-menu' : 'right-menu'"
+  >
+    <div class="container-fluid">
+      <div class="row mt-45">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <app-community
+                [appData]="componentData"
+                (change)="onCommunityTabChange($event)"
+                (showHideLeftMenu)="showHideLeftMenu()"
+                [showLeftMenu]="showHideMenu"
+                style="position: relative"
+              >
+              </app-community>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="row" *ngIf="showPostCommunityRelatedSection">
+        <div class="col-md-12">
+          <app-core-curriculum [appData]="componentData"></app-core-curriculum>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-md-12">
+          <app-coaches-perspective
+            [appData]="componentData"
+          ></app-coaches-perspective>
+        </div>
+      </div>
+      <div class="row" *ngIf="!showPostCommunityRelatedSection">
+        <div class="col-md-12">
+          <app-topics-session [appData]="componentData"></app-topics-session>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <app-discussion-question
+            [appData]="componentData"
+          ></app-discussion-question>
+        </div>
+        <div class="col-md-4">
+          <app-polls
+            [respondColor]="'respondTwo '"
+            [widgetId]="'instanceone'"
+            [theme]="pollThemeTwo"
+            [pollWidgetDetail]="pollWidgetDetail"
+            [appData]="componentData"
+            [showPostCommunityRelatedSection]="showPostCommunityRelatedSection"
+          ></app-polls>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <app-training-material
+            [trainingTheme]="trainingThemeOne"
+            [appData]="componentData"
+          ></app-training-material>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <app-learning [appData]="componentData"></app-learning>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <app-action></app-action>
+        </div>
+      </div> -->
+
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <app-coach-insights></app-coach-insights>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <app-footer-section></app-footer-section>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <app-coaches-perspective-quest></app-coaches-perspective-quest>
+        </div>
+      </div> -->
+
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <app-coaches></app-coaches>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-md-12">
+          <div #reactComponentPlaceHolder></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

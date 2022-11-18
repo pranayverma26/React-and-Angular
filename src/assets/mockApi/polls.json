@@ -1,0 +1,62 @@
+[
+  {
+    "Question": "When you were a student, and teachers assigned group projects, what was your  reaction?",
+    "PollId": 187,
+    "PollOptionId": 0,
+    "TrainingFloId": 0,
+    "WidgetId": 3498,
+    "PollOptions": [
+      {
+        "PollOptionId": 921,
+        "PollId": 187,
+        "OptionText": "Just great. Another project where I have to do all the work."
+      },
+      {
+        "PollOptionId": 922,
+        "PollId": 187,
+        "OptionText": "Fun! A group project!"
+      },
+      {
+        "PollOptionId": 923,
+        "PollId": 187,
+        "OptionText": "Please, don’t pair me up with people I don’t like."
+      },
+      {
+        "PollOptionId": 924,
+        "PollId": 187,
+        "OptionText": "Nobody do anything! I will do all the work. Just don’t touch anything."
+      }
+    ],
+    "LoggedInUser": null
+  },
+  {
+    "Question": "How comfortable are you working with your team in an Agile environment?",
+    "PollId": 189,
+    "PollOptionId": 0,
+    "TrainingFloId": 0,
+    "WidgetId": 3498,
+    "PollOptions": [
+      {
+        "PollOptionId": 934,
+        "PollId": 189,
+        "OptionText": "Very comfortable and currently working in an Agile environment"
+      },
+      {
+        "PollOptionId": 935,
+        "PollId": 189,
+        "OptionText": "Comfortable with the concept but not currently working in an Agile environment"
+      },
+      {
+        "PollOptionId": 936,
+        "PollId": 189,
+        "OptionText": "Understand the concept but not comfortable, yet"
+      },
+      {
+        "PollOptionId": 937,
+        "PollId": 189,
+        "OptionText": "Don't know much about Agile, yet"
+      }
+    ],
+    "LoggedInUser": null
+  }
+]

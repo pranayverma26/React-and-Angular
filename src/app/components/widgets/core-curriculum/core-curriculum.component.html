@@ -1,0 +1,181 @@
+<div class="core" style="position: relative">
+  <div class="text-sec">
+    <h2>Topics For The Session</h2>
+  </div>
+  <div>
+    <div
+      class="main"
+      *ngFor="let item of topics; let indexOfelement = index"
+      style="border-radius: 4px"
+    >
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            [class.active]="defaultSelectedTab === 0"
+            id="home-tab"
+            data-bs-toggle="tab"
+            [attr.data-bs-target]="'#home-tab-pane' + item.CourseId"
+            type="button"
+            role="tab"
+            aria-controls="home-tab-pane"
+            [attr.aria-selected]="defaultSelectedTab === 0"
+          >
+            Topic Overview
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            [class.active]="defaultSelectedTab === 1"
+            id="profile-tab"
+            data-bs-toggle="tab"
+            [attr.data-bs-target]="'#profile-tab-pane' + item.CourseId"
+            type="button"
+            role="tab"
+            aria-controls="profile-tab-pane"
+            [attr.aria-selected]="defaultSelectedTab === 1"
+          >
+            Rate The Course & Give Feedback
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            [class.active]="defaultSelectedTab === 2"
+            id="contact-tab"
+            data-bs-toggle="tab"
+            [attr.data-bs-target]="'#contact-tab-pane' + item.CourseId"
+            type="button"
+            role="tab"
+            aria-controls="contact-tab-pane"
+            [attr.aria-selected]="defaultSelectedTab === 2"
+          >
+            Key Takeaways
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show"
+          [class.active]="defaultSelectedTab === 0"
+          [class.show]="defaultSelectedTab === 0"
+          [id]="'home-tab-pane' + item.CourseId"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+          tabindex="0"
+        >
+          <div class="row">
+            <div class="col-md-3">
+              <img [src]="item.CourseImagePath" alt="Img" class="img-fluid" />
+            </div>
+            <div class="col-md-9">
+              <div class="det-sec" style="margin-bottom: 20px">
+                <h4>{{ item.Title }}</h4>
+                <span style="margin-top: 30px"
+                  ><i class="fa-regular fa-clock"></i> {{ item.StartDateTime }}
+                  {{ indexOfelement === 0 ? "AM" : "PM" }} to
+                  {{ item.EndDateTime }} PM CST</span
+                >
+                <p style="margin-top: 20px">{{ item.LongDescription }}</p>
+              </div>
+            </div>
+          </div>
+          <hr style="color: #4288af" />
+          <div class="col-md-12 facil-main">
+            <h3>{{ item.IsFacilitator ? "Facilitators" : "Coaches" }}</h3>
+            <div class="facilator-main">
+              <div
+                class="facil-sec d-flex"
+                *ngFor="let faci of item.Facilitators"
+              >
+                <div class="inner d-flex align-items-center">
+                  <div class="img-sec">
+                    <img
+                      [src]="faci.ImageURL"
+                      class="rounded-circle img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="desc-sec">
+                    <h6>{{ faci.FirstName }} {{ faci.LastName }}</h6>
+                    <a
+                      href="javascript:void();"
+                      (click)="openModal(viewBio, faci)"
+                      ><span>View Bio</span></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          [class.active]="defaultSelectedTab === 1"
+          [class.show]="defaultSelectedTab === 1"
+          [id]="'profile-tab-pane' + item.CourseId"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+          tabindex="0"
+        >
+          <h6>{{ item.Title }}</h6>
+          <app-rateTheCourse
+            [courseId]="item.CourseId"
+            [appData]="componentData"
+            [topicIndex]="indexOfelement"
+            (refreshData)="refreshTopicData()"
+            (defaultTab)="setDefaultTab($event)"
+          ></app-rateTheCourse>
+        </div>
+        <div
+          class="tab-pane fade"
+          [class.active]="defaultSelectedTab === 2"
+          [class.show]="defaultSelectedTab === 2"
+          [id]="'contact-tab-pane' + item.CourseId"
+          role="tabpanel"
+          aria-labelledby="contact-tab"
+          tabindex="0"
+        >
+          <h6>{{ item.Title }}</h6>
+          <app-key-takeaways
+            [countTheme]="keyThemeOne"
+            [courseId]="item.CourseId"
+            [courseName]="item.Description"
+            [appData]="componentData"
+          ></app-key-takeaways>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center loaderContainer" *ngIf="showLoader">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #viewBio>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ bio.Designation }}</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="img-sec">
+      <img
+        [src]="bio.ImageURL"
+        class="rounded-circle img-fluid"
+        style="width: 40px"
+        alt=""
+      />
+    </div>
+    {{ bio.Bio }}
+  </div>
+</ng-template>
