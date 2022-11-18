@@ -105,6 +105,7 @@ export function EdtechComponent({
     <HMSThemeProvider
       themeType={ThemeTypes.dark}
       aspectRatio={getAspectRatio({ width, height })}
+     
     >
       <HMSRoomProvider
         isHMSStatsOn={FeatureFlags.enableStatsForNerds}
