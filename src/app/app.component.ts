@@ -12,7 +12,7 @@ import { createRoot } from 'react-dom/client';
 export class AppComponent implements AfterViewInit {
   @ViewChild('reactComponentPlaceHolder')
   reactComponentPlaceHolder!: ElementRef;
-  title = 'my-angular-app';
+  title = 'trainup-meet';
   props = { role: 'host', room: '635fdee94208780bf66732ae' };
   ngAfterViewInit() {
     ReactDOM.render(
