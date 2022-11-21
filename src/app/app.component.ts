@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
   sessionData: SessionData[] = [];
   reloadComponent: boolean = false;
   communityData!: CommunityData;
+  isMeetupExpanded: boolean = false;
 
   constructor(private elementRef: ElementRef, private appService: AppService) {
     let myAttribute =
@@ -218,5 +219,10 @@ export class AppComponent implements OnInit {
       React.createElement(ReactComponent, this.props),
       this.reactComponentPlaceHolder.nativeElement
     );
+  }
+
+  expandMeetUp() {
+    this.isMeetupExpanded = !this.isMeetupExpanded;
+    this.showHideMenu = this.isMeetupExpanded ? false : true;
   }
 }
