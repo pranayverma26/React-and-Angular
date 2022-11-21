@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
   reloadComponent: boolean = false;
   communityData!: CommunityData;
   isMeetupExpanded: boolean = false;
+  showMeetingInfo: boolean = false;
 
   constructor(private elementRef: ElementRef, private appService: AppService) {
     let myAttribute =
@@ -187,6 +188,7 @@ export class AppComponent implements OnInit {
   }
 
   onCommunityTabChange(communityData: any) {
+    debugger;
     this.showPostCommunityRelatedSection = communityData.showPostCommunity;
     this.communityData = communityData;
   }
@@ -224,5 +226,10 @@ export class AppComponent implements OnInit {
   expandMeetUp() {
     this.isMeetupExpanded = !this.isMeetupExpanded;
     this.showHideMenu = this.isMeetupExpanded ? false : true;
+  }
+
+  onShowMeeting() {
+    debugger;
+    this.showMeetingInfo = true;
   }
 }

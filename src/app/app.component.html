@@ -29,17 +29,29 @@
   >
     <div class="container-fluid">
       <div class="row mt-45">
-        <div [ngClass]="isMeetupExpanded ? 'col-md-3' : 'col-md-9'">
+        <div
+          [ngClass]="
+            isMeetupExpanded
+              ? 'col-md-3'
+              : !showMeetingInfo
+              ? 'col-md-12'
+              : 'col-md-9'
+          "
+        >
           <app-community
             [appData]="componentData"
             (change)="onCommunityTabChange($event)"
             (showHideLeftMenu)="showHideLeftMenu()"
             [showLeftMenu]="showHideMenu"
             style="position: relative"
+            (showMeetingSection)="onShowMeeting()"
           >
           </app-community>
         </div>
-        <div [ngClass]="isMeetupExpanded ? 'col-md-9' : 'col-md-3'">
+        <div
+          [ngClass]="isMeetupExpanded ? 'col-md-9' : 'col-md-3'"
+          *ngIf="showMeetingInfo"
+        >
           <div class="videoMain">
             <app-meet-up></app-meet-up>
             <a href="#">

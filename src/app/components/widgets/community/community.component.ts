@@ -24,6 +24,8 @@ export class CommunityComponent implements OnInit {
   @Input() showLeftMenu: boolean = true;
   @Output()
   change: EventEmitter<CommunityData> = new EventEmitter<CommunityData>();
+  @Output()
+  showMeetingSection: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   showLoader: boolean = true;
   @Output()
@@ -34,12 +36,11 @@ export class CommunityComponent implements OnInit {
 
   modalRef?: BsModalRef;
 
-  preCommunity?: CommunityType ;
+  preCommunity?: CommunityType;
   postCommunity?: CommunityType;
-  TrainingFloId:number=484;
+  TrainingFloId: number = 484;
   componentData: any;
   sectionURL: string = window.location.href + '/#training';
-
 
   communityData?: CommunityData;
 
@@ -52,7 +53,6 @@ export class CommunityComponent implements OnInit {
     this.componentData = this.appData;
     this.getCommunityData();
     setTimeout(() => {
-
       this.selectTab(this.componentData.IspostcommunityEnabled ? 1 : 0);
     }, 50);
   }
@@ -80,7 +80,6 @@ export class CommunityComponent implements OnInit {
         this.triggerDataChange(this.componentData.IspostcommunityEnabled);
         this.showLoader = false;
         setTimeout(() => {
-
           this.selectTab(this.componentData.IspostcommunityEnabled ? 1 : 0);
         }, 50);
       });
@@ -123,5 +122,9 @@ export class CommunityComponent implements OnInit {
       postCommunity: this.postCommunity,
     };
     this.change.emit(this.communityData);
+  }
+
+  showMeetingDetail() {
+    this.showMeetingSection.emit(true);
   }
 }
