@@ -47,6 +47,13 @@
                 _ngcontent-grg-c69=""
                 class="fa-solid fa-chevron-left"
                 (click)="expandMeetUp()"
+                *ngIf="!isMeetupExpanded"
+              ></i>
+              <i
+                _ngcontent-grg-c69=""
+                class="fa-solid fa-chevron-right"
+                (click)="expandMeetUp()"
+                *ngIf="isMeetupExpanded"
               ></i>
             </a>
           </div>
