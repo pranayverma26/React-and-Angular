@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import './variables.scss';
+@import "./variables.scss";
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 .carousel-control-next,
@@ -106,7 +107,7 @@ body {
 .loaderContainer {
   top: 0;
   position: absolute;
-  background: #F2f2f2;
+  background: #f2f2f2;
   width: 100%;
   height: 100%;
   opacity: 0.4;
@@ -117,7 +118,7 @@ body {
   position: absolute;
 }
 
-.customAccordion>.panel-heading>.panel-title>div>button {
+.customAccordion > .panel-heading > .panel-title > div > button {
   text-decoration: none;
 }
 

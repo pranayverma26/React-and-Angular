@@ -4,7 +4,6 @@
 
 .wrapper {
   position: relative;
-
   .left {
     background: #fff;
     box-shadow: 2px 1px 5px #d9dfe8;
@@ -14,15 +13,13 @@
     z-index: 999;
     height: 100%;
   }
-
   .right {
     margin-top: 75px;
     padding-left: 10px;
     padding-right: 10px;
     position: absolute;
     right: 0;
-    background: #F5F5F5;
-
+    background: #f5f5f5;
     .mt-45 {
       margin-top: 45px;
     }
@@ -32,15 +29,12 @@
 .right-left-menu {
   width: 83%;
 }
-
 .left-left-menu {
   width: 17%;
 }
-
 .right-menu {
   width: 100%;
 }
-
 .left-menu {
   width: 0%;
 }
@@ -50,7 +44,6 @@
     .left {
       top: 109px;
     }
-
     .right {
       .mt-45 {
         margin-top: 25px;
@@ -59,11 +52,10 @@
   }
 }
 
-@media(min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .left-left-menu {
     width: 22%;
   }
-
   .right-left-menu {
     width: 78%;
   }

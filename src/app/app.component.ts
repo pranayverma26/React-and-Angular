@@ -22,7 +22,7 @@ import { CommunityData } from './components/widgets/community/interface/communit
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   @ViewChild('reactComponentPlaceHolder')
@@ -135,9 +135,9 @@ export class AppComponent implements OnInit {
           },
         ],
         MetadataModel: null,
-        IspostcommunityEnabled: true,
+        IspostcommunityEnabled: false,
         UserId: 133263,
-        UserName: 'Bhikaji',
+        UserName: 'Trainup User',
         UserImageUrl: null,
       };
     }
