@@ -1,21 +1,10 @@
-import * as ReactDOM from 'react-dom';
-import * as React from 'react';
-import ReactComponent from './ReactComponent/reactComponent';
 import { TrainingTheme } from './components/widgets/training-material/interface/training.interface';
 import {
   IPollTheme,
   IPollWidget,
 } from './components/widgets/polls/interface/poll.interface';
 import { KeyTheme } from './components/widgets/key-takeaways/interface/keytakeaway.interface';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { SessionData } from './components/widgets/rateTheCourse/interface/rate.interface';
 import { CommunityData } from './components/widgets/community/interface/community.interface';
@@ -25,10 +14,7 @@ import { CommunityData } from './components/widgets/community/interface/communit
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild('reactComponentPlaceHolder')
-  reactComponentPlaceHolder!: ElementRef;
   title = 'trainup-meet';
-  props = { role: 'host', room: '635fdee94208780bf66732ae' };
   //userName: string = 'test user';
   trainingFlowId: number = 0;
   componentData: any;
@@ -211,12 +197,5 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.reloadComponent = false;
     }, 500);
-  }
-
-  ngAfterViewInit() {
-    ReactDOM.render(
-      React.createElement(ReactComponent, this.props),
-      this.reactComponentPlaceHolder.nativeElement
-    );
   }
 }
