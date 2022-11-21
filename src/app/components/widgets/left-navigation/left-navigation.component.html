@@ -5,14 +5,7 @@
 
   <div class="logo-sec d-flex justify-content-center">
     <img
-      src="assets/images/logo4.jpg"
-      class="img-fluid"
-      alt=""
-      (click)="redirectBack()"
-      style="cursor: pointer"
-    />
-    <img
-      src="assets/images/logo3.jpg"
+      src="https://www.trainup.com/UI/Images/Home/trainup-logo.svg"
       class="img-fluid"
       alt=""
       (click)="redirectBack()"
@@ -105,20 +98,31 @@
       [isOpen]="true"
       [panelClass]="'customAccordion'"
     >
-    <span accordion-heading  (click)="collapse=!collapse">
-      <!-- <i class="fa-solid fa-chevron-up" *ngIf ="sessionData.length > 0"></i>
+      <span accordion-heading (click)="collapse = !collapse">
+        <!-- <i class="fa-solid fa-chevron-up" *ngIf ="sessionData.length > 0"></i>
       <i class="fa-solid fa-chevron-down" *ngIf ="sessionData.length == 0"></i> -->
-      <i class="fa-solid" [ngClass]="{'fa-chevron-up':collapse,' fa-chevron-down':!collapse}"></i>
-
-    </span>
-      <ul >
-        <li *ngFor="let item of sessionData" [ngClass]="{ 'selected': item.TrainingFloName === communityData.SessionName }">
-
+        <i
+          class="fa-solid"
+          [ngClass]="{
+            'fa-chevron-up': collapse,
+            ' fa-chevron-down': !collapse
+          }"
+        ></i>
+      </span>
+      <ul>
+        <li
+          *ngFor="let item of sessionData"
+          [ngClass]="{
+            selected: item.TrainingFloName === communityData.SessionName
+          }"
+        >
           <a
             href="javascript:void();"
-            (click)="item.IsEnabled && getAppData(item, noPermission); collapse=!collapse;"
+            (click)="
+              item.IsEnabled && getAppData(item, noPermission);
+              collapse = !collapse
+            "
             class="session-item"
-
             [attr.aria-disabled]="!item.IsEnabled"
           >
             <i class="fa-solid fa-chalkboard-user"></i>

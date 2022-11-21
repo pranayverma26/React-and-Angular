@@ -9,7 +9,11 @@
   "
 >
   <div class="logo-mini" *ngIf="!showHideMenu">
-    <img src="assets/images/logo4.jpg" class="img-fluid" alt="" />
+    <img
+      src="https://www.trainup.com/UI/Images/Home/trainup-logo.svg"
+      class="img-fluid"
+      alt=""
+    />
   </div>
   <div class="dash-main">
     <div class="main">
@@ -52,7 +56,11 @@
       <nav
         style="
           --bs-breadcrumb-divider: url(
-            &#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb;
+            &#34;data:image/svg + xml,
+            %3Csvgxmlns='http://www.w3.org/2000/svg'width='8'height='8'%3E%3Cpathd='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z'fill='currentColor'/%3E%3C/svg%3E&#34;
+          );
+        "
+        aria-label="breadcrumb;
           );
         "
         aria-label="breadcrumb"
@@ -62,7 +70,7 @@
             <a href="javascript:void();" (click)="redirectBack()">Dashboard </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            <a >
+            <a>
               {{ communityData?.CommunityType }} |
               {{ communityData?.SessionName }}</a
             >

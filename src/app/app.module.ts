@@ -33,6 +33,7 @@ import { RespondComponent } from './components/widgets/respond/respond.component
 import { TrainingMaterialComponent } from './components/widgets/training-material/training-material.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { MeetUpComponent } from './components/widgets/meet-up/meet-up.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     RateTheCourseComponent,
     LearningComponent,
     ActionComponent,
+    MeetUpComponent,
   ],
   imports: [
     BrowserModule,

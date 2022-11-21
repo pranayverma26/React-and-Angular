@@ -31,7 +31,7 @@
       <div class="row mt-45">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <app-community
                 [appData]="componentData"
                 (change)="onCommunityTabChange($event)"
@@ -41,13 +41,10 @@
               >
               </app-community>
             </div>
+            <div class="col-md-4">
+              <app-meet-up></app-meet-up>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div #reactComponentPlaceHolder></div>
         </div>
       </div>
 
@@ -131,7 +128,6 @@
           <app-coaches></app-coaches>
         </div>
       </div> -->
-      
     </div>
   </div>
 </div>
