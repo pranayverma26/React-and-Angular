@@ -189,10 +189,25 @@ body {
   }
 }
 
+.hms-ui-c-hqSodN-iWOHJC-css{
+  width: 185px !important;
+}
+
 @media(min-width: 768px) and (max-width: 991px){
   .hms-ui-c-dhzjXW-icuWJdm-css,
   .hms-ui-c-hArDPC{
     width: 72% !important;
+  }
+  .hms-ui-c-lmRRgR{
+    padding: 2px !important;
+  }
+  .hms-ui-c-dwKuRU{
+    gap: 3px !important;
+  }
+  .hms-ui-c-cHVKOV,
+  .hms-ui-c-dUVxwE{
+    width: 25px !important;
+    height: 25px !important;
   }
 }
 
@@ -203,6 +218,20 @@ body {
   .hms-ui-c-dwKuRU,
   .hms-ui-c-dhzjXW-iBtKmJ-css,
   .hms-ui-c-bqxAIx{
+    gap: 3px !important;
+  }
+  .hms-ui-c-cHVKOV,
+  .hms-ui-c-dUVxwE{
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+@media(min-width: 992px) and (max-width: 1199px){
+  .hms-ui-c-lmRRgR{
+    padding: 4px !important;
+  }
+  .hms-ui-c-dwKuRU{
     gap: 3px !important;
   }
 }
