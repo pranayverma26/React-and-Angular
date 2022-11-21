@@ -29,24 +29,35 @@
   >
     <div class="container-fluid">
       <div class="row mt-45">
-          <div class="col-md-8">
-            <app-community
-              [appData]="componentData"
-              (change)="onCommunityTabChange($event)"
-              (showHideLeftMenu)="showHideLeftMenu()"
-              [showLeftMenu]="showHideMenu"
-              style="position: relative"
-            >
-            </app-community>
+        <div [ngClass]="isMeetupExpanded ? 'col-md-3' : 'col-md-9'">
+          <app-community
+            [appData]="componentData"
+            (change)="onCommunityTabChange($event)"
+            (showHideLeftMenu)="showHideLeftMenu()"
+            [showLeftMenu]="showHideMenu"
+            style="position: relative"
+          >
+          </app-community>
+        </div>
+        <div [ngClass]="isMeetupExpanded ? 'col-md-9' : 'col-md-3'">
+          <div class="videoMain">
+            <app-meet-up></app-meet-up>
+            <a href="#">
+              <i
+                _ngcontent-grg-c69=""
+                class="fa-solid fa-chevron-left"
+                (click)="expandMeetUp()"
+                *ngIf="!isMeetupExpanded"
+              ></i>
+              <i
+                _ngcontent-grg-c69=""
+                class="fa-solid fa-chevron-right"
+                (click)="expandMeetUp()"
+                *ngIf="isMeetupExpanded"
+              ></i>
+            </a>
           </div>
-          <div class="col-md-4">
-            <div class="videoMain">
-              <app-meet-up></app-meet-up>
-                <a href="#">
-                  <i _ngcontent-grg-c69="" class="fa-solid fa-chevron-left"></i>
-                </a>
-            </div>
-          </div>
+        </div>
       </div>
 
       <div class="row" *ngIf="showPostCommunityRelatedSection">
@@ -62,7 +73,7 @@
           ></app-coaches-perspective>
         </div>
       </div>
-      <div class="row" *ngIf="!showPostCommunityRelatedSection"> 
+      <div class="row" *ngIf="!showPostCommunityRelatedSection">
         <div class="col-md-12">
           <app-topics-session [appData]="componentData"></app-topics-session>
         </div>
